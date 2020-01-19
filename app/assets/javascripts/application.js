@@ -14,3 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require bootstrap
+//= require init_fancy
+//= require jquery-ui
+//= require autocomplete-rails

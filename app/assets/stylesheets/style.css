@@ -1,0 +1,303 @@
+
+html{
+
+background-color: white	;
+}
+
+body {
+margin:0 auto;
+box-shadow: 0 0 8px gray;
+overflow: auto;
+background: url(../assets/a.png);
+background-size: cover;
+background-attachment: fixed;
+width: auto;
+height: auto;
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+}
+
+
+.wrap {
+	overflow: hidden;
+}
+
+/* ----- ヘッダー ----- */
+header {
+height: 187px;
+margin-left: 11%;
+margin-top: 12px;
+
+}
+
+
+.content_intro {
+  margin-left: 50px;
+  margin-right: 50px;
+  font-size: 20px;
+line-height: 1.7;
+}
+#intro {
+  text-align: center;
+  font-weight: bold;
+}
+/*====================================================================
+.s_01 .accordion_one
+====================================================================*/
+.s_01 .accordion_one {
+    padding-right: 40px;
+    max-width: 595px;
+    margin: 0 auto;
+}
+.s_01 .accordion_one .accordion_header {
+    background-color: #FFC0CB;
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 20px 11%;
+    text-align: center;
+    position: relative;
+    z-index: +1;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+.s_01 .accordion_one:nth-of-type(2) .accordion_header {
+    background-color: #ff9a05;
+}
+.s_01 .accordion_one:nth-of-type(3) .accordion_header {
+    background-color: #1c85d8;
+}
+.s_01 .accordion_one .accordion_header:hover {
+    opacity: .8;
+}
+.s_01 .accordion_one .accordion_header .i_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #fff;
+    margin-top: -20px;
+    box-sizing: border-box;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    transform-origin: center center;
+    transition-duration: 0.2s;
+}
+.s_01 .accordion_one .accordion_header .i_box .one_i {
+    display: block;
+    width: 18px;
+    height: 18px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    transform-origin: center center;
+    transition-duration: 0.2s;
+    position: relative;
+}
+.s_01 .accordion_one .accordion_header.open .i_box {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
+}
+.s_01 .accordion_one .accordion_header .i_box .one_i:before, .s_01 .accordion_one .accordion_header .i_box .one_i:after {
+    display: flex;
+    content: '';
+    background-color: #fff;
+    border-radius: 10px;
+    width: 18px;
+    height: 4px;
+    position: absolute;
+    top: 7px;
+    left: 0;
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+    transform-origin: center center;
+}
+.s_01 .accordion_one .accordion_header .i_box .one_i:before {
+    width: 4px;
+    height: 18px;
+    top: 0;
+    left: 7px;
+}
+.s_01 .accordion_one .accordion_header.open .i_box .one_i:before {
+    content: none;
+}
+.s_01 .accordion_one .accordion_header.open .i_box .one_i:after {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.s_01 .accordion_one .accordion_inner {
+    display: none;
+    padding: 30px 30px;
+    border-left: 2px solid #FFC0CB;
+    border-right: 2px solid #FFC0CB;
+    border-bottom: 2px solid #FFC0CB;
+    box-sizing: border-box;
+}
+.s_01 .accordion_one:nth-of-type(2) .accordion_inner {
+    border-left: 2px solid #ff9a05;
+    border-right: 2px solid #ff9a05;
+    border-bottom: 2px solid #ff9a05;
+}
+.s_01 .accordion_one:nth-of-type(3) .accordion_inner {
+    border-left: 2px solid #1c85d8;
+    border-right: 2px solid #1c85d8;
+    border-bottom: 2px solid #1c85d8;
+}
+.s_01 .accordion_one .accordion_inner .box_one {
+    height: 1000px;
+}
+.s_01 .accordion_one .accordion_inner p.txt_a_ac {
+    margin: 0;
+}
+@media screen and (max-width: 1024px) {
+    .s_01 .accordion_one .accordion_header {
+        font-size: 18px;
+    }
+    .s_01 .accordion_one .accordion_header .i_box {
+        width: 30px;
+        height: 30px;
+        margin-top: -15px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .s_01 .accordion_one .accordion_header {
+        font-size: 16px;
+        text-align: left;
+        padding: 15px 60px 15px 15px;
+    }
+}
+
+
+
+
+.sidebar {
+
+  font-size: 20px;
+  color:gray;
+  max-width:390px;
+  min-height:150px;
+  height:auto ;
+
+}
+
+
+.msr_box03 {
+  background-color: #1B73BA;
+  width: 23px;
+}
+.msr_box03 a{
+  box-sizing: border-box;
+
+  color: #000000;
+  display:block;
+  position: relative;
+  transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -webkit-transition: 0.2s ease-in-out;
+}
+.msr_box03 img {
+
+  display: block;
+}
+.msr_box03 p {
+  background-color: #FFFFFF;
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 8px;
+}
+.msr_box03 .ttl {
+  background-color: #FFC0CB;
+
+  color: #FFFFFF;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 8px;
+  position: relative;
+}
+
+/* 青の三角形 */
+.msr_box03 .ttl:before {
+  border: 7px solid transparent;
+  border-top: 7px solid #FFC0CB;
+  box-sizing: border-box;
+  content: "";
+  height: 7px;
+  left: 50%;
+  margin:0 0 0 -7px;
+  position: absolute;
+  top: 100%;
+  width: 14px;
+}
+.msr_box03 a:hover{
+  opacity: 0.8;
+}
+
+
+
+
+/* ----- 右サイド カテゴリー ----- */
+.side-1 {
+width:95%;
+height:200px;
+margin-top:10px;
+margin-right:10px;
+background-color:white;
+box-shadow: 0 0 3px gray;
+
+}
+
+.side-2 {
+width:95%;
+margin-top:20px;
+margin-right:10px;
+
+background-color:white;
+box-shadow: 0 0 3px gray;
+
+}
+.side-3 {
+width:95%;
+margin-top:20px;
+margin-right:10px;
+
+background-color:white;
+box-shadow: 0 0 3px gray;
+
+}
+
+
+
+
+
+/* ----- メイン ----- */
+.content {
+  background-color: white;
+  box-shadow: 0 0 3px gray;
+
+}
+/* ----- 投稿フォーム ----- */
+.content_post {
+  margin-top: 10px;
+  max-width:605px;
+
+}
+
+.inside {
+text-align: center;
+}
+
+#footerWrap{
+	width:100%;
+}
+/* ----- フッター ----- */
+#footer {
+max-width:100%;
+height:100px;
+background-color:#009b9f;
+margin-top:15px;
+}
