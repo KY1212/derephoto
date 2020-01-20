@@ -1,29 +1,50 @@
+<div class="content_post col-md-8"><br>
+  <div class="section s_01">
 
+    <div class="accordion_one">
+      <div class="accordion_header style="font-size: 25px" >投稿<div class="i_box"><i class="one_i"></i></div></div>
+      <div class="accordion_inner">
+        <div class="box_one">
+          <p class="txt_a_ac">
 
 <%= form_with model: @image, local: true do |form| %>
 <%= render 'layouts/error_messages', model: form.object %>
 
   <div>
-    <%= form.label :name %>
+    <%= form.label :name,  "ハンドルネーム(任意)", class: "col-md-7 control-label" %>
     <%= form.text_field :name %>
   </div>
 
   <div>
-    <%= form.label :avatar %>
-    <%= form.file_field :avatar %>
-  </div>
+    <%= form.label :avatar,  "※画像選択してください(必須)", class: "col-md-8 control-label"  %>
+    <div class="col-md-8">
+    <%= form.file_field :avatar, class: "form-control-file" %>
+  </div>  </div><br>
 
-  <div>
-    <%= form.submit %>
+  <!--投稿ボタン-->
+  <div class="center-block">
+  <div class="form-group"><br>
+    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  <%= form.submit name="投稿", class: "btn btn-default btn-primary"%>
   </div>
-<% end %>
+  <% end %>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
 <!-- app/views/users/index.html.erb -->
 
 <ul>
   <% @images.each do |image| %>
     <li>
       <p><%= image.name %></p>
-      <%= image_tag image.avatar %>
+      <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
+      <%= image_tag image.avatar, height: '250', :style=>"width:300;" %>
+      <%end%>
+
     </li>
   <% end %>
 </ul>
