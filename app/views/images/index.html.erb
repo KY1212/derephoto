@@ -1,1 +1,29 @@
-aaa
+
+
+<%= form_with model: @image, local: true do |form| %>
+<%= render 'layouts/error_messages', model: form.object %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :avatar %>
+    <%= form.file_field :avatar %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+<!-- app/views/users/index.html.erb -->
+
+<ul>
+  <% @images.each do |image| %>
+    <li>
+      <p><%= image.name %></p>
+      <%= image_tag image.avatar %>
+    </li>
+  <% end %>
+</ul>
