@@ -53,10 +53,14 @@
     <div class="side-1 sidebar msr_box03 ">
       <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">ログイン</div></h3><br>
         <div class="inside">
-          さん<br>
+        <%if user_signed_in? %>
+          <%=current_user.name%>さん<br>
+          <%= link_to "ログアウト",destroy_user_session_path, method: :delete,:style=>"color:#007BBB;" %>
+        <%else%>
+          <%= link_to 'Twitterでログイン！', user_twitter_omniauth_authorize_path,:style=>"color:#007BBB;"  %>
+        <%end%>
         </div>
     </div>
-
       <!--キーワード-->
       <div class="side-2 sidebar msr_box03 ">
         <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">投稿数が多いアイドル(上位3人)</div></h3>
