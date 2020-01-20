@@ -1,7 +1,10 @@
 class Image < ApplicationRecord
   has_one_attached :avatar
 
+  validates :comment,    length: { maximum: 50 }
+
   validate :avatar_presence
+
 
     def avatar_presence
       if avatar.attached?

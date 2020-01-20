@@ -7,44 +7,108 @@
         <div class="box_one">
           <p class="txt_a_ac">
 
-<%= form_with model: @image, local: true do |form| %>
-<%= render 'layouts/error_messages', model: form.object %>
 
-  <div>
-    <%= form.label :name,  "ハンドルネーム(任意)", class: "col-md-7 control-label" %>
-    <%= form.text_field :name %>
-  </div>
+            <!--画像投稿部分-->
+            <%= form_with model: @image, local: true do |form| %>
+            <%= render 'layouts/error_messages', model: form.object %>
 
-  <div>
-    <%= form.label :avatar,  "※画像選択してください(必須)", class: "col-md-8 control-label"  %>
-    <div class="col-md-8">
-    <%= form.file_field :avatar, class: "form-control-file" %>
-  </div>  </div><br>
+            <!--ハンドルネーム-->
+            <div class="form-group">
+              <%= form.label :name,  "ハンドルネーム(任意)", class: "col-md-7 control-label" %>
+              <div class="col-md-8">
+                <%= form.text_field :name, class: "form-control" %>
+              </div>
+            </div>
+            <!--コメント-->
+            <div class="form-group">
+              <%= form.label :comment,  "コメント(任意)", class: "col-md-7 control-label" %>
+              <div class="col-md-8">
+                <%= form.text_area :comment, class: "form-control", :size=>"60*10"%>
+              </div>
+            </div>
 
-  <!--投稿ボタン-->
-  <div class="center-block">
-  <div class="form-group"><br>
-    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-  <%= form.submit name="投稿", class: "btn btn-default btn-primary"%>
-  </div>
-  <% end %>
-</div>
-</div>
-</div>
+            <!--アイドル名-->
 
-</div>
-</div>
-</div>
+            <br>
+            <!--タイプ別-->
+            <%= form.label :type,  "アイドルのタイプ(必須)", class: "col-md-6 control-label" %>
+            <div class="col-md-10">
+              <label>
+                <%= form.radio_button :type, 1 %> Cute </label>
+              <label>
+                <%= form.radio_button :type, 2 %> Cool </label>
+              <label>
+                <%= form.radio_button :type, 3 %> Passion </label>
+              <label>
+                <%= form.radio_button :type, 4 %> All </label>
+            </div>
+            <br>
+
+            <!--MVの種類-->
+            <%= form.label :mv,  "MVの種類(必須)", class: "col-md-8 control-label" %>
+            <div class="col-md-8">
+              <label>
+                <%= form.radio_button :mv, 1 %> 通常MV </label>
+              <label>
+                <%= form.radio_button :mv, 2 %> AR </label><br>
+            </div>
+
+　               <!--画像選択-->
+            <div class="form-group">
+              <%= form.label :avatar,  "※画像選択してください(必須)", class: "col-md-8 control-label" %>
+              <div class="col-md-8">
+                <%= form.file_field :avatar, class: "form-control-file" %>
+              </div>
+            </div>
+            <!--投稿ボタン-->
+            <div class="center-block">
+              <div class="form-group"><br>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <%= form.submit name="投稿", class: "btn btn-default btn-primary"%>
+              </div>
+            </div><!--p class="txt_a_ac"-->
+            <% end %>
+
+
+        </div><!--div class="box_one"-->
+      </div><!--div class="accordion_inner"-->
+    </div><!--div class="accordion_one"-->
+  </div><!--div class="section s_01"-->
 <!-- app/views/users/index.html.erb -->
 
 <ul>
-  <% @images.each do |image| %>
-    <li>
-      <p><%= image.name %></p>
-      <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
-      <%= image_tag image.avatar, height: '250', :style=>"width:300;" %>
-      <%end%>
+  __________________________________________________
+  <br><br>
+<% @images.each do |image| %>
+  <p><%= image.name %></p>
+  <!--コメント-->
+  <p><%= image.comment %></p>
+  <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
+  <%= image_tag image.avatar, height: '250', :style=>"width:300;" %>
+<br>
+<br>
+  <!--アイドルの属性タグ-->
+タグ： <%= if image.type == 1 then
+        "Cute"
+      elsif image.type == 2 then
+        "Cool"
+      elsif image.type == 3 then
+        "Passion"
+       else
+        "All" end %>
 
-    </li>
+      <!--MV設定タグ-->
+      <%= if image.mv == 1 then
+        "通常MV"
+       elsif image.mv == 2 then
+        "AR" end %>
+      <!--アイドル名タグ-->
+      <%= image.idolname %>
+      <% end %>
+      __________________________________________________
+<br>
+<br>
   <% end %>
+
 </ul>
+</div><!--div class="content_post col-md-8"-->

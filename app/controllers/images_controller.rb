@@ -13,9 +13,12 @@ class ImagesController < ApplicationController
     @image = Image.new(image_params)
 
     if @image.save
-      redirect_to root_url, notice: 'Add image'
+      flash[:success] = "投稿に成功しました！"
+
+      redirect_to root_url
     else
       @images = Image.all
+      flash.now[:danger] = "投稿に失敗しました。投稿フォームをもう一度確認してみてください。"
 
       render :index
     end
