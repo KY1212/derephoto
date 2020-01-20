@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module Derephoto
   class Application < Rails::Application
+    #devise日本語化
+    config.i18n.default_locale = :ja
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
