@@ -36,9 +36,10 @@ ActiveRecord::Schema.define(version: 2020_01_20_150236) do
   create_table "images", force: :cascade do |t|
     t.string "name"
     t.text "comment"
-    t.integer "type"
+    t.integer "idoltype"
     t.integer "mv"
     t.string "idolname"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

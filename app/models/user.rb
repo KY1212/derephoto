@@ -4,6 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
 
+has_many :images
+
+def correct_user
+  @image = current_user.images.find_by(id: params[:id])
+    unless @image
+      redirect_to root_url
+    end
+end
+
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 

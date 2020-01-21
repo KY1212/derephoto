@@ -11,7 +11,7 @@ class ImagesController < ApplicationController
 
   def create
     @image = Image.new(image_params)
-
+    @image.user_id = current_user.id
     if @image.save
       flash[:success] = "投稿に成功しました！"
 
@@ -24,9 +24,11 @@ class ImagesController < ApplicationController
     end
   end
 
+
+
   private
 
   def image_params
-    params.fetch(:image, {}).permit(:name, :avatar)
+    params.fetch(:image, {}).permit(:name, :type, :mv, :avatar)
   end
 end

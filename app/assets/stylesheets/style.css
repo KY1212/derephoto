@@ -289,6 +289,14 @@ box-shadow: 0 0 3px gray;
 
 }
 
+
+ .mypage {
+  margin-top: 1px;
+  max-width:305px;
+
+}
+
+
 .inside {
 text-align: center;
 }

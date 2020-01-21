@@ -53,8 +53,10 @@
       <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">ログイン</div></h3><br>
         <div class="inside">
         <%if user_signed_in? %>
-          <%=current_user.name%>さん<br>
+          <%=current_user.id%>.<%=current_user.name%>さん<br>
           <%= link_to "ログアウト",destroy_user_session_path, method: :delete,:style=>"color:#007BBB;" %>
+          <%= link_to "マイページ","/users/#{current_user.id}" %>
+
         <%else%>
           <%= link_to 'Twitterでログイン！', user_twitter_omniauth_authorize_path,:style=>"color:#007BBB;"  %>
         <%end%>

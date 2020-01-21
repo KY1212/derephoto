@@ -1,4 +1,4 @@
-<div class="content_post col-md-8"><br>
+<br>
   <div class="section s_01">
 
     <div class="accordion_one">
@@ -31,16 +31,16 @@
 
             <br>
             <!--タイプ別-->
-            <%= form.label :type,  "アイドルのタイプ(必須)", class: "col-md-6 control-label" %>
+            <%= form.label :idoltype,  "アイドルのタイプ(必須)", class: "col-md-6 control-label" %>
             <div class="col-md-10">
               <label>
-                <%= form.radio_button :type, 1 %> Cute </label>
+                <%= form.radio_button :idoltype, 1 %> Cute </label>
               <label>
-                <%= form.radio_button :type, 2 %> Cool </label>
+                <%= form.radio_button :idoltype, 2 %> Cool </label>
               <label>
-                <%= form.radio_button :type, 3 %> Passion </label>
+                <%= form.radio_button :idoltype, 3 %> Passion </label>
               <label>
-                <%= form.radio_button :type, 4 %> All </label>
+                <%= form.radio_button :idoltype, 4 %> All </label>
             </div>
             <br>
 
@@ -73,26 +73,27 @@
         </div><!--div class="box_one"-->
       </div><!--div class="accordion_inner"-->
     </div><!--div class="accordion_one"-->
-  </div><!--div class="section s_01"-->
-<!-- app/views/users/index.html.erb -->
 
 <ul>
-  __________________________________________________
-  <br><br>
+<hr><!--棒-->
+
 <% @images.each do |image| %>
   <p><%= image.name %></p>
   <!--コメント-->
   <p><%= image.comment %></p>
+  <!--画像-->
   <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
   <%= image_tag image.avatar, height: '250', :style=>"width:300;" %>
+  <% end %>
+
 <br>
 <br>
   <!--アイドルの属性タグ-->
-タグ： <%= if image.type == 1 then
+タグ： <%= if image.idoltype == 1 then
         "Cute"
-      elsif image.type == 2 then
+      elsif image.idoltype == 2 then
         "Cool"
-      elsif image.type == 3 then
+      elsif image.idoltype == 3 then
         "Passion"
        else
         "All" end %>
@@ -104,9 +105,7 @@
         "AR" end %>
       <!--アイドル名タグ-->
       <%= image.idolname %>
-      <% end %>
-      __________________________________________________
-<br>
+      <hr><!--棒-->
 <br>
   <% end %>
 

@@ -1,0 +1,14 @@
+<div class="content_intro"><br>
+    <%=current_user.id%>.<%=current_user.name%>さん<br>
+    <ul>
+    <hr>  <br><br>
+      投稿履歴<br>
+      <% @images.each do |image| %>
+        <%=@user.id %>.<%=@user.name %><br>
+          <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
+          <%= image_tag image.avatar, height: '250', :style=>"width:300;" %>
+          <% end %>
+          <br><br><hr>
+      </div>
+
+  <%end%>
