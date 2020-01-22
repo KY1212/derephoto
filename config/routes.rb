@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
 post "/" => "images#index"
 get "/images" => "images#index"
+get "/users" => "users#index"
 
 get "/images" => "images#test"
 get "/users/:id" => "users#show"
