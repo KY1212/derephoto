@@ -79,13 +79,17 @@
 
 <% @images.each do |image| %>
   <p><%= image.name %></p>
+  <!--投稿画像のuser_id(関連付け)と現在ログインしているユーザーが一致しているか-->
+  <%if image.user_id == current_user.id  %>
+   <%= link_to '投稿を削除', image, method: :delete, data: {confirm: "投稿を削除しますか？"} %>
+   <%else%>
+  <%end%>
   <!--コメント-->
   <p><%= image.comment %></p>
   <!--画像-->
   <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
   <%= image_tag image.avatar, height: '250', :style=>"width:300;" %>
   <% end %>
-
 <br>
 <br>
   <!--アイドルの属性タグ-->

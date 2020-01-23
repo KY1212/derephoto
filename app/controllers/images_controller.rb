@@ -24,7 +24,11 @@ class ImagesController < ApplicationController
     end
   end
 
-
+  def destroy
+   @image = Image.find(params[:id]).destroy
+      #destroyメソッドを使用し対象のツイートを削除する。
+     redirect_to root_url
+    end
 
   private
 

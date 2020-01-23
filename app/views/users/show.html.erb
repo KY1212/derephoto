@@ -1,12 +1,15 @@
 <br>
-    <%=current_user.id%>.<%=current_user.name%>さんの投稿履歴<br>
+    <%=current_user.name%>さんの投稿履歴<br>
     <ul>
     <hr>
       <br>
       <% @images.each do |image| %>
-        <%=@user.id %>.<%=@user.name %><br>
+        <%=@user.id %>.<%=@user.name %>
+        <%if image.user_id == current_user.id  %>
+         <%= link_to '投稿を削除', image, method: :delete, data: {confirm: "投稿を削除しますか？"} %>
+         <%else%>
+        <%end%><br><br>
           <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
           <%= image_tag image.avatar, height: '250', :style=>"width:300;" %>
         <% end %><br><br><hr>
       <% end %>
-          <br><br><hr>
