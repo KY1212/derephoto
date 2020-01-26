@@ -2,6 +2,9 @@ class Image < ApplicationRecord
   has_one_attached :avatar
 
   belongs_to :user
+  validates :idolname, presence: true
+  validates :idoltype, presence: true
+  validates :mv, presence: true
 
   validate :avatar_presence
 

@@ -36,7 +36,7 @@
             </div>
             <br>
             <!--タイプ別-->
-            <%= form.label :idoltype,  "アイドルのタイプ(必須)", class: "col-md-6 control-label" %>
+            <%= form.label :idoltype,  "アイドルのタイプ(必須)", class: "col-md-8 control-label" %>
             <div class="col-md-10">
               <label>
                 <%= form.radio_button :idoltype, 1 %> Cute </label>
@@ -60,7 +60,7 @@
 
 　               <!--画像選択-->
             <div class="form-group">
-              <%= form.label :avatar,  "※画像選択してください(必須)", class: "col-md-8 control-label" %>
+              <%= form.label :avatar,  "※画像選択してください(必須)", class: "col-md-10 control-label" %>
               <div class="col-md-8">
                 <%= form.file_field :avatar, class: "form-control-file" %>
               </div>
