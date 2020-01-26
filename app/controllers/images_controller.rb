@@ -6,11 +6,29 @@ class ImagesController < ApplicationController
   end
 
   def new
-    @image = Image.new
+      @idol = Idol.new
+
+      idols = Idol.all
+      idols = idols.map(&:idolname) #:idolnameを取り出し、戻り値として配列で作成
+  render json: idols.to_json
+
+   respond_to do |format| #respondo_to=指定した形式で返すようにするメソッド
+       format.html
+       format.json
+   end
   end
+
+  def auto_complete
+  @idols = Idol.select(:idolname).where("idolname like '%" + params[:term] + "%'").order(:idolname)
+  @idols = @idols.map(&:idolname)
+  render json: @idols.to_json
+end
 
   def create
     @image = Image.new(image_params)
+    @image.idolname = params[:image][:idolname]
+
+
     @image.user_id = current_user.id
     if @image.save
       flash[:success] = "投稿に成功しました！"
@@ -33,6 +51,6 @@ class ImagesController < ApplicationController
   private
 
   def image_params
-    params.fetch(:image, {}).permit(:name, :type, :mv, :avatar)
+    params.fetch(:image, {}).permit(:name, :idolname, :idoltype, :mv, :avatar )
   end
 end

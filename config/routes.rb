@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   resources :images, only: [:new, :create, :destroy]
   resources :users, only: [:destroy]
 
+  resources :images do
+    collection do
+      get "auto_complete"
+    end
+  end
+
 post "/" => "images#index"
 get "/images" => "images#index"
 get "/users" => "users#index"

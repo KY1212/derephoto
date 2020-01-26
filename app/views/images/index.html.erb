@@ -28,7 +28,12 @@
             </div>
 
             <!--アイドル名-->
-
+            <div class="form-group">
+              <%= form.label :idolname,  "アイドル名(必須)", class: "col-md-7 control-label" %>
+               <div class="col-md-8">
+                 <%= form.text_field :idolname, id: :user_name %>
+             　</div>
+            </div>
             <br>
             <!--タイプ別-->
             <%= form.label :idoltype,  "アイドルのタイプ(必須)", class: "col-md-6 control-label" %>
@@ -100,13 +105,13 @@
       elsif image.idoltype == 3 then
         "Passion"
        else
-        "All" end %>
+        "All" end %>,
 
       <!--MV設定タグ-->
       <%= if image.mv == 1 then
         "通常MV"
        elsif image.mv == 2 then
-        "AR" end %>
+        "AR" end %>,
       <!--アイドル名タグ-->
       <%= image.idolname %>
       <hr><!--棒-->
