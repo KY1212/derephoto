@@ -1,0 +1,45 @@
+<div class="content_intro"><br>
+
+<p></p>
+<!--ここから先が検索機能の実装部-->
+<%= form_tag sorts_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "検索", :name => nil %>
+  </p>
+<% end %>
+<br>
+検索結果：<%= @count_post %>件です
+
+<% @sorts.each do |sort| %><br>
+
+  <!--コメント-->
+  <p><%= sort.comment %></p>
+  <!--画像-->
+  <%= link_to  sort.avatar, "data-lightbox" => sort.avatar do %>
+  <%= image_tag sort.avatar, height: '250', :style=>"width:300;" %>
+  <% end %>
+<br>
+<br>
+  <!--アイドルの属性タグ-->
+タグ： <%= if sort.idoltype == 1 then
+        "Cute"
+      elsif sort.idoltype == 2 then
+        "Cool"
+      elsif sort.idoltype == 3 then
+        "Passion"
+       else
+        "All" end %>,
+
+      <!--MV設定タグ-->
+      <%= if sort.mv == 1 then
+        "通常MV"
+       elsif sort.mv == 2 then
+        "AR" end %>,
+      <!--アイドル名タグ-->
+      <%= sort.idolname %>
+      <hr><!--棒-->
+<br>
+  <% end %>
+
+</div>

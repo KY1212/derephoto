@@ -2,6 +2,14 @@ class ImagesController < ApplicationController
 
   def index
     @images = Image.all
+    @count_post = @images.count
+
+  if params[:idolname].blank?
+    else
+      @images = Image.search(params[:idolname])
+      @count_post = @images.count
+
+  end
     @image = Image.new
   end
 
@@ -23,6 +31,13 @@ class ImagesController < ApplicationController
   @idols = @idols.map(&:idolname)
   render json: @idols.to_json
 end
+
+def auto_complete_search
+@idols = Idol.select(:idolname).where("search like '%" + params[:term] + "%'").order(:idolname)
+@idols = @idols.map(&:idolname)
+render json: @idols.to_json
+end
+
 
   def create
     @image = Image.new(image_params)

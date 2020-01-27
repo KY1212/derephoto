@@ -8,7 +8,7 @@
           <p class="txt_a_ac">
 
 
-            <!--画像投稿部分-->
+            <!--投稿フォーム-->
             <%= form_with model: @image, local: true do |form| %>
             <%= render 'layouts/error_messages', model: form.object %>
 
@@ -78,11 +78,28 @@
         </div><!--div class="box_one"-->
       </div><!--div class="accordion_inner"-->
     </div><!--div class="accordion_one"-->
+</div>
 
-<ul>
 <hr><!--棒-->
 
+
+
+<!--検索フォーム-->
+<div class="form-group">
+  <%= form_tag images_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
+
+      <%= text_field_tag :idolname, params[:idolname] %>
+      <%= submit_tag "検索", :name => nil %>
+
+  <% end %>
+
+</div>
 <% @images.each do |image| %>
+検索結果は<%= @count_post %>件です
+
+<hr><!--棒-->
+<ul>
+
   <p><%= image.name %></p>
   <!--投稿画像のuser_id(関連付け)と現在ログインしているユーザーが一致しているか-->
   <%#<%if image.user_id == current_user.id  %>
@@ -119,4 +136,3 @@
   <% end %>
 
 </ul>
-</div><!--div class="content_post col-md-8"-->

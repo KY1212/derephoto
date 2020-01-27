@@ -32,7 +32,9 @@ margin-top: 12px;
 }
 
 
-
+.color_gray {
+	color: #555555;
+}
 
 .content_intro {
   margin-left: 50px;
@@ -177,13 +179,11 @@ line-height: 1.7;
 
 
 .sidebar {
-
   font-size: 20px;
-  color:gray;
+  color:#555555;
   max-width:390px;
   min-height:150px;
   height:auto ;
-
 }
 
 

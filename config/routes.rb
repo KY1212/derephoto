@@ -11,12 +11,15 @@ Rails.application.routes.draw do
     end
   end
 
+
 post "/" => "images#index"
 get "/images" => "images#index"
 get "/users" => "users#index"
+get "/sorts" => "sorts#index"
 
 get "/images" => "images#test"
 get "/users/:id" => "users#show"
+
 #indexページから削除
 delete "/images/:id" => "images#destroy"
 #マイページから削除

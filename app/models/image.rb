@@ -8,6 +8,18 @@ class Image < ApplicationRecord
 
   validate :avatar_presence
 
+  def self.search(idolname) #self.でクラスメソッドとしている
+
+    if idolname # Controllerから渡されたパラメータが!= nilの場合は、titleカラムを部分一致検索
+      Image.where(['idolname LIKE ?', "%#{idolname}%"])
+
+    else
+      Image.all #全て表示。
+    end
+  end
+
+
+
 
     def avatar_presence
       if avatar.attached?
