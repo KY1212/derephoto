@@ -63,7 +63,7 @@
 
 　           <!--画像選択-->
           <div class="form-group">
-            <%= form.label :avatar,  "※画像選択してください(必須)", class: "col-md-10 control-label" %>
+            <%= form.label :avatar,  "※画像を選択(必須)", class: "col-md-10 control-label" %>
             <div class="col-md-8">
               <%= form.file_field :avatar, class: "form-control-file" %>
             </div>
@@ -71,8 +71,7 @@
           <!--投稿ボタン-->
           <div class="center-block">
             <div class="form-group"><br>
-              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-              <%= form.submit name="投稿", class: "btn btn-default btn-primary"%>
+              <center><%= form.submit name="投稿", class: "btn btn-default btn-primary"%></center>
             </div>
           </div><!--p class="txt_a_ac"-->
           <% end %>
@@ -82,13 +81,13 @@
   </div>
 
 
-<hr><!--棒-->
 
+<hr><!--棒-->
   投稿数：<%= @count_post %>件
 
 <% @images.each do |image| %>
 <hr><!--棒-->
-<ul>
+<div><!--1postのまとまり-->
   <p><%= image.name %></p>
 
   <!--nameの値が空の場合、「名無しのPさん」と表示させる-->
@@ -103,7 +102,7 @@
   <p><%= image.comment %></p>
   <!--画像-->
   <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
-  <%= image_tag image.avatar, height: '250', :style=>"width:300;" %>
+  <%= image_tag image.avatar, height: '98%', :style=>"width:98%;" %>
   <% end %>
 <br>
 <br>
@@ -124,5 +123,5 @@
         "AR" end %>,
       <!--アイドル名タグ-->
       <%= image.idolname %>
-</ul>
+</div><!--1postのまとまり-->
 <% end %>

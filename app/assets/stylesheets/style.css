@@ -19,16 +19,19 @@ min-height: 100vh;
 }
 
 
+
+
 .wrap {
 	overflow: hidden;
 }
 
 /* ----- ヘッダー ----- */
 header {
-height: 187px;
-margin-left: 11%;
-margin-top: 12px;
+margin:  0 auto;
+height: 30%;
+margin-top: 22px;
 
+margin-bottom: 14px;
 }
 
 
@@ -50,7 +53,8 @@ line-height: 1.7;
 .s_01 .accordion_one
 ====================================================================*/
 .s_01 .accordion_one {
-    padding-right: 40px;
+	margin:  0 auto;
+
     max-width: 595px;
     margin: 0 auto;
 }
@@ -152,7 +156,7 @@ line-height: 1.7;
     border-bottom: 2px solid #1c85d8;
 }
 .s_01 .accordion_one .accordion_inner .box_one {
-    height: 1000px;
+    height: auto;
 }
 .s_01 .accordion_one .accordion_inner p.txt_a_ac {
     margin: 0;
@@ -169,8 +173,8 @@ line-height: 1.7;
 }
 @media screen and (max-width: 767px) {
     .s_01 .accordion_one .accordion_header {
-        font-size: 16px;
-        text-align: left;
+        font-size: 22px;
+        text-align: center;
         padding: 15px 60px 15px 15px;
     }
 }
@@ -185,7 +189,15 @@ line-height: 1.7;
   min-height:150px;
   height:auto ;
 }
-
+@media screen and (max-width: 767px) {
+	.sidebar {
+	  font-size: 20px;
+	  color:#555555;
+	  width:100%;
+	  min-height:150px;
+	  height:auto ;
+	}
+}
 
 .msr_box03 {
   background-color: #1B73BA;
@@ -288,14 +300,23 @@ box-shadow: 0 0 3px gray;
 .content {
   background-color: white;
   box-shadow: 0 0 3px gray;
+	width: 100%;
+}
 
+@media screen and (max-width: 767px) {
+.content {
+  background-color: white;
+  box-shadow: 0 0 3px gray;
+	width: 100%;
+	margin: 16px;
+	}
 }
 /* ----- 投稿フォーム ----- */
 .content_post {
   margin-top: 10px;
   max-width:605px;
-
 }
+
 
 
  .mypage {

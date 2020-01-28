@@ -1,4 +1,3 @@
-<div class="content_intro"><br>
 
 <p></p>
 <!--ここから先が検索機能の実装部-->
@@ -10,14 +9,14 @@
 <% end %>
 <br>
 検索結果：<%= @count_post %>件です
+<div>
 
 <% @sorts.each do |sort| %><br>
-
   <!--コメント-->
   <p><%= sort.comment %></p>
   <!--画像-->
   <%= link_to  sort.avatar, "data-lightbox" => sort.avatar do %>
-  <%= image_tag sort.avatar, height: '250', :style=>"width:300;" %>
+  <%= image_tag sort.avatar, height: '98%', :style=>"width:98%;" %>
   <% end %>
 <br>
 <br>
@@ -41,5 +40,4 @@
       <hr><!--棒-->
 <br>
   <% end %>
-
 </div>

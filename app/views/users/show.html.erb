@@ -2,7 +2,7 @@
     <div style="text-align:center;">
       <%=current_user.name%>さんの投稿履歴全<%= @count %>件
     </div>
-    <ul>
+    <div><!--1postのまとまり-->
     <hr>
       <br>
       <%@count = 0%>
@@ -15,7 +15,7 @@
          <%else%>
         <%end%><br><br>
           <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
-          <%= image_tag image.avatar, height: '250', :style=>"width:300;" %>
+          <%= image_tag image.avatar, height: '98%', :style=>"width:98%;" %>
         <% end %><br><br>
         <!--アイドルの属性タグ-->
       タグ： <%= if image.idoltype == 1 then

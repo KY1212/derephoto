@@ -7,11 +7,13 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
+        <!--JQuery-->
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <!--lightbox-->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <!-- Stylesheets -->
         <link rel="stylesheet" href="assets/style.css"/>
@@ -23,81 +25,125 @@
   </head>
 
   <body>
-    <div class="wrap">
-      <div class="container">
+    <div class="color_gray">
+      <div class="wrap">
+        <div class="container">
 
-        <div class="row">
-          <header>
-            <div class="col-xs-12 col-sm-12 col-md-12"><%= link_to root_path do%><%=image_tag "derephoto2.png"%><%end%></div>
-          </header>
-        </div><!--class="row"-->
-              <%= render 'layouts/flash' %>
+          <!--ヘッダー画像-->
+          <div class="row">
+            <header>
+              <div class="col-xs-12 col-sm-12 col-md-12" >
+                <%= link_to root_path do%><%=image_tag "derephoto2.png", :style => "max-width: 100%;"%><%end%></div>
+            </header>
+          </div>
 
-            <div class="row">
-              <div class="content content_post col-md-6 offset-md-1">
-                <%= yield %>
+
+
+          <nav class="navbar navbar-dark bg-dark d-lg-none ">
+            <a href="#" class="navbar-brand">menu</a>
+            <button class="navbar-toggler" type="button"
+                data-toggle="collapse"
+                data-target="#navmenu1"
+                aria-controls="navmenu1"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon bg-dark"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navmenu1">
+              <div class="navbar-nav">
+                <%if user_signed_in? %><br>
+                  <%=current_user.name%>さん<br><br>
+                  <%= link_to "ログアウト",destroy_user_session_path, method: :delete,:style=>"color:white;" %><br>
+                  <%= link_to "マイページ","/users/#{current_user.id}",:style=>"color:white;" %><br>
+                <%else%>
+                  <br><%= link_to 'Twitterでログイン！', user_twitter_omniauth_authorize_path,:style=>"color:white;"  %><br>
+                <%end%>
+                <%= link_to "このサイトについて", "/users",:style=>"color:white;" %><br>
+                <%= link_to "画像を詳細検索", "/sorts",:style=>"color:white;" %><br>
+
+                <%= form_tag images_path, :method => 'get' do %>
+                    <%= text_field_tag :idolname, params[:idolname], :placeholder => "検索したいアイドル名" %>
+                    <%= submit_tag "検索", :name => nil %>
+                <% end %><br>
               </div>
+            </div>
+          </nav>
 
-            <!--サイドバー-->
-            <div class="sidebar col-md-4 d-none d-lg-block ">
 
-              <!--検索-->
-              <div class="side-4 sidebar msr_box03 ">
-                <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">検索</div></h3><br>
-                <div class="inside">
-                  <!--検索フォーム-->
-                  <center><div class="form-group">
-                    <%= form_tag images_path, :method => 'get' do %>
-                        <%= text_field_tag :idolname, params[:idolname], :placeholder => "検索したいアイドル名" %>
-                        <%= submit_tag "検索", :name => nil %>
-                    <% end %>
-                  </div></center><br>
-                </div>
+          <!--フラッシュメッセージ-->
+          <%= render 'layouts/flash' %>
+
+          <div class="row">
+
+          <!--コンテンツ-->
+          <div class="content content_post col-xs-12 col-md-12 col-lg-6 offset-md-1">
+            <%= yield %>
+          </div>
+
+
+
+
+          <!--サイドバー-->
+          <div class="sidebar col-md-4 d-none d-lg-block">
+
+            <!--検索-->
+            <div class="side-4 sidebar msr_box03 ">
+              <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">検索</div></h3><br>
+              <div class="inside">
+                <!--検索フォーム-->
+                <center><div class="form-group">
+                  <%= form_tag images_path, :method => 'get' do %>
+                      <%= text_field_tag :idolname, params[:idolname], :placeholder => "検索したいアイドル名" %>
+                      <%= submit_tag "検索", :name => nil %>
+                  <% end %>
+                </div></center><br>
               </div>
-
-              <!--ログインゾーン-->
-              <div class="side-1 sidebar msr_box03 ">
-                <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">ログイン</div></h3><br>
-                <div class="inside">
-                  <%if user_signed_in? %>
-                    <%=current_user.name%>さん<br>
-                    累計投稿数<%= @count %>件
-                    <%= link_to "ログアウト",destroy_user_session_path, method: :delete,:style=>"color:#007BBB;" %>
-
-                  <%else%>
-                  <%= link_to 'Twitterでログイン！', user_twitter_omniauth_authorize_path,:style=>"color:#007BBB;"  %>
-                  <%end%>
-                  <br>
-                </div>
-              </div>
-
-            <!--キーワード-->
-            <div class="side-2 sidebar msr_box03 ">
-              <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">投稿数が多いアイドル</div></h3>
-                <!--対象カラムを配列で取得-->
-                <div class="inside">
-                  <%= link_to "画像を詳細検索", "/sorts",:style=>"color:#007BBB;" %><br>
-                </div>
             </div>
 
+            <!--ログイン-->
+            <div class="side-1 sidebar msr_box03 ">
+              <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">ログイン</div></h3><br>
+              <div class="inside">
+
+                <%if user_signed_in? %>
+                  <%=current_user.id%>.<%=current_user.name%>さん<br>
+                  <%= link_to "ログアウト",destroy_user_session_path, method: :delete,:style=>"color:#007BBB;" %>
+                  <%= link_to "マイページ","/users/#{current_user.id}" %>
+                <%else%>
+                  <%= link_to 'Twitterでログイン！', user_twitter_omniauth_authorize_path,:style=>"color:#007BBB;"  %>
+                <%end%><br>
+              </div>
+            </div>
+            <!--キーワード-->
+            <div class="side-2 sidebar msr_box03 ">
+              <h3 class="ttl">
+                <div style="font-weight: bold; font-size: 23px;">投稿数が多いアイドル</div>
+              </h3>
+              <!--対象カラムを配列で取得-->
+              <div class="inside">
+                <%= link_to "画像を詳細検索", "/sorts",:style=>"color:#007BBB;" %><br>
+              </div>
+            </div>
             <!--諸々の紹介-->
             <div class="side-3 sidebar msr_box03 ">
-              <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">サイト紹介</div></h3><br>
-                <div class="inside">修正中
-                  <%= link_to "このサイトについて", "/users",:style=>"color:#007BBB;" %><br>
-                </div>
+              <h3 class="ttl">
+                <div style="font-weight: bold; font-size: 23px;">サイト紹介</div></h3><br>
+                  <div class="inside">修正中
+                    <%= link_to "このサイトについて", "/users",:style=>"color:#007BBB;" %>
+                  </div>
             </div>
           </div><!--class="sidebar col-md-4 d-none d-lg-block"-->
 
           <!--フッター-->
-          <div id="footerWrap">
-            <div id="footer">
-              修正中
-            </div><!--id="footer"-->
-          </div><!--id="footerWrap"-->
+            <div id="footerWrap">
+              <div id="footer">
+                修正中
+              </div><!--id="footer"-->
+            </div><!--id="footerWrap"-->
 
-        </div><!--class="row"-->
-      </div><!--class="container"-->
-    </div><!--class="wrap"-->
+          </div><!--class="row"-->
+        </div> <!--class="container"-->
+      </div><!--class="wrap"-->
+    </div><!--class="color_gray"-->
   </body>
 </html>
