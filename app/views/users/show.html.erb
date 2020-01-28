@@ -1,11 +1,13 @@
 <br><div class="color_gray">
     <div style="text-align:center;">
-      <%=current_user.name%>さんの投稿履歴
+      <%=current_user.name%>さんの投稿履歴全<%= @count %>件
     </div>
     <ul>
     <hr>
       <br>
+      <%@count = 0%>
       <% @images.each do |image| %>
+
         投稿者: <%=@user.name %>
 
         <%if image.user_id == current_user.id  %>
@@ -31,6 +33,13 @@
              elsif image.mv == 2 then
               "AR" end %>,
             <!--アイドル名タグ-->
-            <%= image.idolname %>        <br><hr>
-      <% end %>
+            <%= image.idolname %>
+            <br><hr>
+            <!--特定のユーザーの投稿累計-->
+            <%if image.user_id == current_user.id%>
+              <% @count += 1 %>
+            <% else %>
+            <%end%>
+          <% end %>
+
     </div>

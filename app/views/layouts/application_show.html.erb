@@ -40,23 +40,40 @@
 
             <!--サイドバー-->
             <div class="sidebar col-md-4 d-none d-lg-block ">
+
+              <!--検索-->
+              <div class="side-4 sidebar msr_box03 ">
+                <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">検索</div></h3><br>
+                <div class="inside">
+                  <!--検索フォーム-->
+                  <center><div class="form-group">
+                    <%= form_tag images_path, :method => 'get' do %>
+                        <%= text_field_tag :idolname, params[:idolname], :placeholder => "検索したいアイドル名" %>
+                        <%= submit_tag "検索", :name => nil %>
+                    <% end %>
+                  </div></center><br>
+                </div>
+              </div>
+
               <!--ログインゾーン-->
               <div class="side-1 sidebar msr_box03 ">
                 <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">ログイン</div></h3><br>
                 <div class="inside">
                   <%if user_signed_in? %>
-                    <%=current_user.id%>.<%=current_user.name%>さん<br>
+                    <%=current_user.name%>さん<br>
+                    累計投稿数<%= @count %>件
                     <%= link_to "ログアウト",destroy_user_session_path, method: :delete,:style=>"color:#007BBB;" %>
-                    <%= link_to "マイページ","/users/#{current_user.id}",:style=>"color:#007BBB;" %>
+
                   <%else%>
                   <%= link_to 'Twitterでログイン！', user_twitter_omniauth_authorize_path,:style=>"color:#007BBB;"  %>
                   <%end%>
+                  <br>
                 </div>
               </div>
 
             <!--キーワード-->
             <div class="side-2 sidebar msr_box03 ">
-              <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">投稿数が多いアイドル(上位3人)</div></h3>
+              <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">投稿数が多いアイドル</div></h3>
                 <!--対象カラムを配列で取得-->
                 <div class="inside">
                   <%= link_to "画像を詳細検索", "/sorts",:style=>"color:#007BBB;" %><br>

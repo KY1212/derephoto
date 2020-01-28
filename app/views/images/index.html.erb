@@ -1,111 +1,95 @@
 <br>
-  <div class="section s_01">
+<div class="section s_01">
+  <div class="accordion_one">
+    <div class="accordion_header style="font-size: 25px" >投稿<div class="i_box"><i class="one_i"></i></div></div>
+    <div class="accordion_inner">
+      <div class="box_one">
+        <p class="txt_a_ac">
 
-    <div class="accordion_one">
-      <div class="accordion_header style="font-size: 25px" >投稿<div class="i_box"><i class="one_i"></i></div></div>
-      <div class="accordion_inner">
-        <div class="box_one">
-          <p class="txt_a_ac">
 
+          <!--投稿フォーム-->
+          <%= form_with model: @image, local: true do |form| %>
+          <%= render 'layouts/error_messages', model: form.object %>
 
-            <!--投稿フォーム-->
-            <%= form_with model: @image, local: true do |form| %>
-            <%= render 'layouts/error_messages', model: form.object %>
-
-            <!--ハンドルネーム-->
-            <div class="form-group">
-              <%= form.label :name,  "ハンドルネーム(任意)", class: "col-md-7 control-label" %>
-              <div class="col-md-8">
-                <%= form.text_field :name, class: "form-control" %>
-              </div>
-            </div>
-            <!--コメント-->
-            <div class="form-group">
-              <%= form.label :comment,  "コメント(任意)", class: "col-md-7 control-label" %>
-              <div class="col-md-8">
-                <%= form.text_area :comment, class: "form-control", :size=>"60*10"%>
-              </div>
-            </div>
-
-            <!--アイドル名-->
-            <div class="form-group">
-              <%= form.label :idolname,  "アイドル名(必須)", class: "col-md-7 control-label" %>
-               <div class="col-md-8">
-                 <%= form.text_field :idolname, id: :user_name %>
-             　</div>
-            </div>
-            <br>
-            <!--タイプ別-->
-            <%= form.label :idoltype,  "アイドルのタイプ(必須)", class: "col-md-8 control-label" %>
-            <div class="col-md-10">
-              <label>
-                <%= form.radio_button :idoltype, 1 %> Cute </label>
-              <label>
-                <%= form.radio_button :idoltype, 2 %> Cool </label>
-              <label>
-                <%= form.radio_button :idoltype, 3 %> Passion </label>
-              <label>
-                <%= form.radio_button :idoltype, 4 %> All </label>
-            </div>
-            <br>
-
-            <!--MVの種類-->
-            <%= form.label :mv,  "MVの種類(必須)", class: "col-md-8 control-label" %>
+          <!--ハンドルネーム-->
+          <div class="form-group">
+            <%= form.label :name,  "ハンドルネーム(任意)", class: "col-md-7 control-label" %>
             <div class="col-md-8">
-              <label>
-                <%= form.radio_button :mv, 1 %> 通常MV </label>
-              <label>
-                <%= form.radio_button :mv, 2 %> AR </label><br>
+              <%= form.text_field :name, class: "form-control" %>
             </div>
-
-　               <!--画像選択-->
-            <div class="form-group">
-              <%= form.label :avatar,  "※画像選択してください(必須)", class: "col-md-10 control-label" %>
-              <div class="col-md-8">
-                <%= form.file_field :avatar, class: "form-control-file" %>
-              </div>
+          </div>
+          <!--コメント-->
+          <div class="form-group">
+            <%= form.label :comment,  "コメント(任意)", class: "col-md-7 control-label" %>
+            <div class="col-md-8">
+              <%= form.text_area :comment, class: "form-control", :size=>"60*10"%>
             </div>
-            <!--投稿ボタン-->
-            <div class="center-block">
-              <div class="form-group"><br>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <%= form.submit name="投稿", class: "btn btn-default btn-primary"%>
-              </div>
-            </div><!--p class="txt_a_ac"-->
-            <% end %>
+          </div>
 
+          <!--アイドル名-->
+          <div class="form-group">
+            <%= form.label :idolname,  "アイドル名(必須)", class: "col-md-7 control-label" %>
+            <div class="col-md-8">
+              <%= form.text_field :idolname, id: :user_name %>
+            </div>
+          </div>
+          <br>
+          <!--タイプ別-->
+          <%= form.label :idoltype,  "アイドルのタイプ(必須)", class: "col-md-8 control-label" %>
+          <div class="col-md-10">
+            <label>
+                <%= form.radio_button :idoltype, 1 %> Cute
+            </label>
+            <label>
+                <%= form.radio_button :idoltype, 2 %> Cool
+            </label>
+            <label>
+                <%= form.radio_button :idoltype, 3 %> Passion
+            </label>
+            <label>
+                <%= form.radio_button :idoltype, 4 %> All
+            </label>
+          </div>
+          <br>
 
+          <!--MVの種類-->
+          <%= form.label :mv,  "MVの種類(必須)", class: "col-md-8 control-label" %>
+          <div class="col-md-8">
+            <label>
+              <%= form.radio_button :mv, 1 %> 通常MV </label>
+            <label>
+              <%= form.radio_button :mv, 2 %> AR </label><br>
+          </div>
+
+　           <!--画像選択-->
+          <div class="form-group">
+            <%= form.label :avatar,  "※画像選択してください(必須)", class: "col-md-10 control-label" %>
+            <div class="col-md-8">
+              <%= form.file_field :avatar, class: "form-control-file" %>
+            </div>
+          </div>
+          <!--投稿ボタン-->
+          <div class="center-block">
+            <div class="form-group"><br>
+              &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+              <%= form.submit name="投稿", class: "btn btn-default btn-primary"%>
+            </div>
+          </div><!--p class="txt_a_ac"-->
+          <% end %>
         </div><!--div class="box_one"-->
       </div><!--div class="accordion_inner"-->
     </div><!--div class="accordion_one"-->
-</div>
+  </div>
+
 
 <hr><!--棒-->
 
+  投稿数：<%= @count_post %>件
 
-
-<!--検索フォーム-->
-<div class="form-group">
-  <%= form_tag images_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
-
-      <%= text_field_tag :idolname, params[:idolname] %>
-      <%= submit_tag "検索", :name => nil %>
-
-  <% end %>
-
-</div>
 <% @images.each do |image| %>
-検索結果は<%= @count_post %>件です
-
 <hr><!--棒-->
 <ul>
-
   <p><%= image.name %></p>
-  <!--投稿画像のuser_id(関連付け)と現在ログインしているユーザーが一致しているか-->
-  <%#<%if image.user_id == current_user.id  %>
-   <%#<%= link_to '投稿を削除', image, method: :delete, data: {confirm: "投稿を削除しますか？"} %>
-   <%#<%else%>
-  <%#<%end%>
   <!--コメント-->
   <p><%= image.comment %></p>
   <!--画像-->
@@ -115,7 +99,7 @@
 <br>
 <br>
   <!--アイドルの属性タグ-->
-タグ： <%= if image.idoltype == 1 then
+  タグ： <%= if image.idoltype == 1 then
         "Cute"
       elsif image.idoltype == 2 then
         "Cool"
@@ -131,8 +115,5 @@
         "AR" end %>,
       <!--アイドル名タグ-->
       <%= image.idolname %>
-      <hr><!--棒-->
-<br>
-  <% end %>
-
 </ul>
+<% end %>

@@ -2,9 +2,10 @@ class ImagesController < ApplicationController
 
   def index
     @images = Image.all
-    @count_post = @images.count
+
 
   if params[:idolname].blank?
+    @count_post = @images.count
     else
       @images = Image.search(params[:idolname])
       @count_post = @images.count
