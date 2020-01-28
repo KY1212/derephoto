@@ -90,6 +90,12 @@
 <hr><!--棒-->
 <ul>
   <p><%= image.name %></p>
+
+  <!--曜日フォーマット情報をdateに格納-->
+  <% date = image.created_at.to_s(:datetime) %>
+  (<%= weekday = %w[日 月 火 水 木 金 土]
+  weekday[Date.parse(date).wday] %>)
+
   <!--コメント-->
   <p><%= image.comment %></p>
   <!--画像-->
