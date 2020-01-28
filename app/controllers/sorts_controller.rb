@@ -9,7 +9,6 @@ class SortsController < ApplicationController
   private
 
   def image_params
-    params.fetch(:image, {}).permit(:name,, :comment, :idolname, :idoltype, :mv, :avatar )
     params.fetch(:image, {}).permit(:name, :comment, :idolname, :idoltype, :mv, :avatar )
   end
 end
