@@ -41,6 +41,8 @@ end
 
 
   def create
+    if user_signed_in?
+
     @image = Image.new(image_params)
     @image.idolname = params[:image][:idolname]
 
@@ -54,8 +56,13 @@ end
       @images = Image.all
       flash.now[:danger] = "投稿に失敗しました。投稿フォームをもう一度確認してみてください。"
 
-      render :index
+      render "index"
+      return
     end
+
+  else
+    render templete: "users/sign_in"
+  end
   end
 
   def destroy

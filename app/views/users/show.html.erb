@@ -1,45 +1,86 @@
-<br><div class="color_gray">
-    <div style="text-align:center;">
-      <%=current_user.name%>さんの投稿履歴全<%= @count %>件
-    </div>
-    <div><!--1postのまとまり-->
-    <hr>
-      <br>
-      <%@count = 0%>
-      <% @images.each do |image| %>
+<hr><!--棒-->
 
-        投稿者: <%=@user.name %>
+<center><%=current_user.name%>さんの投稿履歴全件</center>
 
-        <%if image.user_id == current_user.id  %>
-         <%= link_to '投稿を削除します', image, method: :delete, data: {confirm: "投稿を削除しますか？"} %>
-         <%else%>
-        <%end%><br><br>
-          <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
-          <%= image_tag image.avatar, height: '98%', :style=>"width:98%;" %>
-        <% end %><br><br>
-        <!--アイドルの属性タグ-->
-      タグ： <%= if image.idoltype == 1 then
-              "Cute"
-            elsif image.idoltype == 2 then
-              "Cool"
-            elsif image.idoltype == 3 then
-              "Passion"
-             else
-              "All" end %>,
+<hr><!--棒-->
+<div><!--1postのまとまり-->
 
-            <!--MV設定タグ-->
-            <%= if image.mv == 1 then
-              "通常MV"
-             elsif image.mv == 2 then
-              "AR" end %>,
-            <!--アイドル名タグ-->
-            <%= image.idolname %>
-            <br><hr>
-            <!--特定のユーザーの投稿累計-->
-            <%if image.user_id == current_user.id%>
-              <% @count += 1 %>
-            <% else %>
-            <%end%>
-          <% end %>
 
-    </div>
+<% @images.each do |image| %>
+
+<div class="col-md-12 d-none d-lg-block" >
+  <p><%= image.name %></p>
+  &nbsp;名無しのPさん&emsp;<%= image.created_at.to_s(:datetime) %>
+
+  <!--曜日フォーマット情報をdateに格納-->
+  <% date = image.created_at.to_s(:datetime) %>
+  (<%= weekday = %w[日 月 火 水 木 金 土]
+  weekday[Date.parse(date).wday] %>)
+
+  <!--いいねボタンのビュー-->
+  <%= render 'likes/like', image: image %>
+  <%if image.user_id == current_user.id  %>
+   &nbsp;<%= link_to '投稿を削除', image, method: :delete,:style=>"color:grey;", data: {confirm: "投稿を削除しますか？"} %>
+  <%else%>
+  <%end%>
+</div>
+
+
+<div class="col-xs-12 col-md-12 d-md-none show_like" >
+  <p><%= image.name %></p>
+  名無しのPさん&nbsp;<%= image.created_at.to_s(:datetime) %>
+
+  <!--曜日フォーマット情報をdateに格納-->
+  <% date = image.created_at.to_s(:datetime) %>
+  (<%= weekday = %w[日 月 火 水 木 金 土]
+  weekday[Date.parse(date).wday] %>)
+
+  <!--いいねボタンのビュー-->
+  <div class="like_button">
+  <%= render 'likes/like', image: image %>
+  </div>
+  <!--削除リンク-->
+  <%if image.user_id == current_user.id  %>
+  <%= link_to '投稿を削除', image, method: :delete,:style=>"color:grey;", data: {confirm: "投稿を削除しますか？"} %>
+  <%else%>
+  <%end%>
+</div>
+
+<!--コメント-->
+<p><%= image.comment %></p>
+
+  <br><br>
+    <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
+    <%= image_tag image.avatar, height: '98%', :style=>"width:98%;" %>
+  <% end %><br><br>
+
+  <!--アイドルの属性タグ-->
+  タグ： <%= if image.idoltype == 1 then
+      "Cute"
+    elsif image.idoltype == 2 then
+      "Cool"
+    elsif image.idoltype == 3 then
+      "Passion"
+     else
+      "All" end %>,
+
+    <!--MV設定タグ-->
+    <%= if image.mv == 1 then
+      "通常MV"
+     elsif image.mv == 2 then
+      "AR" end %>,
+    <!--アイドル名タグ-->
+    <%= image.idolname %>
+    <br>
+    <!--特定のユーザーの投稿累計-->
+    <%if image.user_id == current_user.id%>
+    <% else %>
+    <%end%><hr>
+  <% end %>
+
+
+
+
+
+
+</div>

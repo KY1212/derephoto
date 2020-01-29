@@ -7,7 +7,7 @@ class CreateImages < ActiveRecord::Migration[5.2]
       t.integer :mv
       t.string :idolname
       t.integer :user_id
-
+      t.integer :likes_count
       t.timestamps
     end
   end

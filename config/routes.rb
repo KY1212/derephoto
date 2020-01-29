@@ -17,6 +17,9 @@ get "/images" => "images#index"
 get "/users" => "users#index"
 get "/sorts" => "sorts#index"
 
+post   '/like/:image_id' => 'likes#like',   as: 'like'
+delete '/like/:image_id' => 'likes#unlike', as: 'unlike'
+
 get "/images" => "images#test"
 get "/users/:id" => "users#show"
 

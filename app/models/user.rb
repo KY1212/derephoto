@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable
 
 has_many :images
+has_many :likes, dependent: :destroy
+has_many :like_stories, through: :likes, source: :image
 
 def correct_user
   @image = current_user.images.find_by(id: params[:id])

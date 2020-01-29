@@ -1,0 +1,26 @@
+<div class="like-link" id="like-link-<%= image.id %>">
+
+  <% if user_signed_in?%>
+
+  <% if current_user.likes.find_by(image_id: image.id) %>
+    <%= link_to unlike_path(image.id), method: :delete, remote: true do %>
+        <div class = "iine__button">
+          <%= image_tag("black.png") %>
+          <%= image.likes.count %>
+        </div>
+    <% end %>
+    <% else %>
+      <%= link_to like_path(image.id), method: :post, remote: true do %>
+        <div class = "iine__button">
+          <%= image_tag("white.png") %>
+          <%= image.likes.count %>
+        </div>
+      <% end %>
+    <% end %>
+
+  <% else %>
+
+
+
+<% end %>
+</div>

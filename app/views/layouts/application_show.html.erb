@@ -39,7 +39,7 @@
 
 
 
-          <nav class="navbar navbar-dark bg-dark d-lg-none ">
+          <nav class="navbar navbar-dark bg-dark d-lg-none">
             <a href="#" class="navbar-brand">menu</a>
             <button class="navbar-toggler" type="button"
                 data-toggle="collapse"
@@ -75,16 +75,20 @@
 
           <div class="row">
 
-          <!--コンテンツ-->
-          <div class="content content_post col-xs-12 col-md-12 col-lg-6 offset-md-1">
-            <%= yield %>
-          </div>
 
 
 
 
-          <!--サイドバー-->
-          <div class="sidebar col-md-4 d-none d-lg-block">
+            <!--コンテンツ-->
+            <div class="content content_post col-xs-12 col-md-12 col-lg-6 offset-md-1">
+              <%= yield %>
+            </div>
+
+
+
+
+            <!--サイドバー-->
+            <div class="sidebar col-md-4 d-none d-lg-block">
 
             <!--検索-->
             <div class="side-4 sidebar msr_box03 ">
@@ -133,6 +137,8 @@
                   </div>
             </div>
           </div><!--class="sidebar col-md-4 d-none d-lg-block"-->
+
+
 
           <!--フッター-->
             <div id="footerWrap">

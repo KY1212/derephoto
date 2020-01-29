@@ -1,5 +1,7 @@
 class Image < ApplicationRecord
   has_one_attached :avatar
+  has_many :likes, dependent: :destroy
+  has_many :liking_users, through: :likes, source: :user
 
   belongs_to :user
   validates :idolname, presence: true

@@ -90,9 +90,6 @@
 <div><!--1postのまとまり-->
   <p><%= image.name %></p>
 
-  <div class="col-md-12 d-none d-lg-block" >
-
-
   <!--nameの値が空の場合、「名無しのPさん」と表示させる-->
   &nbsp;名無しのPさん&emsp;<%= image.created_at.to_s(:datetime) %>
 
@@ -100,23 +97,11 @@
   <% date = image.created_at.to_s(:datetime) %>
   (<%= weekday = %w[日 月 火 水 木 金 土]
   weekday[Date.parse(date).wday] %>)
-  <!--いいねボタンのビュー-->
+
+
   <%= render 'likes/like', image: image %>
-</div>
 
-<div class="col-xs-12 d-md-none like" >
 
-<!--nameの値が空の場合、「名無しのPさん」と表示させる-->
-&nbsp;名無しのPさん&emsp;<%= image.created_at.to_s(:datetime) %>
-
-<!--曜日フォーマット情報をdateに格納-->
-<% date = image.created_at.to_s(:datetime) %>
-(<%= weekday = %w[日 月 火 水 木 金 土]
-weekday[Date.parse(date).wday] %>)
-<!--いいねボタンのビュー-->
-<%= render 'likes/like', image: image %>
-</div>
-<br>
 
   <!--コメント-->
   <p><%= image.comment %></p>
