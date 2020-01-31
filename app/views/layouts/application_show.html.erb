@@ -125,6 +125,7 @@
               </h3>
               <!--対象カラムを配列で取得-->
               <div class="inside">
+                <br>
                 <%= link_to "画像を詳細検索", "/sorts",:style=>"color:#007BBB;" %><br>
               </div>
             </div>
@@ -132,30 +133,33 @@
             <div class="side-3 sidebar msr_box03 ">
               <h3 class="ttl">
                 <div style="font-weight: bold; font-size: 23px;">サイト紹介</div></h3><br>
-                  <div class="inside">修正中
-                    <%= link_to "このサイトについて", "/users",:style=>"color:#007BBB;" %>
+                  <div class="inside">
+                    <%= link_to "このサイトについて", "/users",:style=>"color:#007BBB;" %><br>
                   </div>
             </div>
           </div><!--class="sidebar col-md-4 d-none d-lg-block"-->
 
 
 
-          <!--フッター-->
-            <div id="footerWrap">
-              <div id="footer">
-                <center><br>
 
-                <%= link_to "Vastworld.org", "https://vastworld.org/",:style=>"color:#007BBB" %> |
-                <%= link_to "免責事項", "/users",:style=>"color:#007BBB" %> |
-                <%= link_to "サイト規約", "/users",:style=>"color:#007BBB" %> 
-                <br>
-                 © Copyright 2019–デレステ保管庫(仮).All Rights Reserved.
-                </center >              </div><!--id="footer"-->
-            </div><!--id="footerWrap"-->
 
           </div><!--class="row"-->
         </div> <!--class="container"-->
       </div><!--class="wrap"-->
+      <!--フッター-->
+        <div id="footerWrap">
+          <div id="footer">
+            <center><br>
+
+            <%= link_to "Vastworld.org", "https://vastworld.org/",:style=>"color:#007BBB" %> |
+            <%= link_to "免責事項", "/users",:style=>"color:#007BBB" %> |
+            <%= link_to "サイト規約", "/users",:style=>"color:#007BBB" %>
+            <br><br>
+            <div style="font-size:14px;">© Copyright 2020–デレステ保管庫(仮).All Rights Reserved.</div>
+               <br>
+            </center >
+          </div><!--id="footer"-->
+        </div><!--id="footerWrap"-->
     </div><!--class="color_gray"-->
   </body>
 </html>
