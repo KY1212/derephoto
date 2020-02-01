@@ -1,0 +1,10 @@
+ja:
+  activerecord:
+    models:
+      image: イメージ
+    attributes:
+      image:
+        idolname: アイドル名
+        avatar: 画像
+        idoltype: アイドルのタイプ
+        mv: MVの種類
