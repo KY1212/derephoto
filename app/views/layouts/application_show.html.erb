@@ -58,8 +58,8 @@
                 <%else%>
                   <br><%= link_to 'Twitterでログイン！', user_twitter_omniauth_authorize_path,:style=>"color:white;"  %><br>
                 <%end%>
+                <%= link_to "投稿数早見一覧", "/sorts",:style=>"color:white;" %><br>
                 <%= link_to "このサイトについて", "/users",:style=>"color:white;" %><br>
-                <%= link_to "画像を詳細検索", "/sorts",:style=>"color:white;" %><br>
 
                 <%= form_tag images_path, :method => 'get' do %>
                     <%= text_field_tag :idolname, params[:idolname], :placeholder => "検索したいアイドル名" %>
