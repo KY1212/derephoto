@@ -33,6 +33,19 @@ min-height: 100vh;
 
 	}
 
+.post_idol_list {
+	margin:10px;
+}
+
+.sorts_title {
+	text-align: center;
+	font-size: 26px;
+}
+
+.sorts_content {
+	text-align: center;
+	font-size: 19px;
+}
 
 	 .iine__button {
 		 width:12%;

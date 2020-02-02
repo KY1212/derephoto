@@ -1,0 +1,57 @@
+
+
+    <!--<div class="intro2">
+    デレステのスクリーンショットをよくツイッターで見ているのですが、
+    どんなに素晴らしい切り抜きでもツイッターの仕様上どんどん埋もれていくのがもったいないと思い、
+    <b>デレステ専用の画像投稿サイト</b>を作ってみました。
+    勉強も兼ねているので、色々チグハグな部分がありますが、よかったら使ってみてください！！
+    <br>
+    ※デレステのスクショ以外の投稿は控えて頂けますようお願い申し上げます。
+    </div>-->
+    <div class="intro2">
+    <div style="font-weight: bold;">対象カラムを配列で取得</div>
+    <div>コード⇒ block = Image.pluck(:idolname)</div><br>
+    <%= block = Image.pluck(:idolname)%>
+    <br><br><br><br>
+    <div style="font-weight: bold;">重複しているカラムをそれぞれ塊として取得</div>
+    <div>コード⇒ block.group_by(&:itself)</div><br>
+    <!--hashのvalueを数字に変換-->
+    <% hash_count = block.group_by(&:itself)%><br>
+    <% hash_count = block.group_by(&:itself).transform_values(&:size)%><br>
+    <!--hashのvalueのみ取得-->
+    <% hash_count.values %><br><br>
+    <!--hashを配列に変換-->
+    <% ary_count = hash_count.to_a %><br><br>
+    <!--降順に並び替え-->
+    <% ary_count.sort_by {|k,v| v}.reverse%><br><br>
+    <!--firstで配列の先頭から任意の数だけ抜き出す-->
+    <% ary = ary_count.sort_by {|k,v| v}.reverse%><br><br>
+    <br><br>
+    <%= ary.dig(0,0)%><br>
+    <% aryfirst = ary.dig(0,1)%><br>
+    <% aryfirst2 = ary.dig(1,1)%><br>
+    <% aryfirst3 = ary.dig(2,1)%><br>
+
+    <% if aryfirst == aryfirst2  %><br>
+     <%= ary.dig(0,0)%>(<%= ary.dig(0,1)%>)<br><br>
+     <%= ary.dig(1,0)%>(<%= ary.dig(1,1)%>)<br><br>
+     <%= ary.dig(2,0)%>(<%= ary.dig(2,1)%>)<br><br>
+    <%elsif%>
+     <%= ary.dig(0,0)%>(<%= ary.dig(0,1)%>)<br><br>
+     <%= ary.dig(1,0)%>(<%= ary.dig(1,1)%>)<br><br>
+     <%= ary.dig(2,0)%>(<%= ary.dig(2,1)%>)<br><br>
+    <%else%>
+     <%= ary.dig(0,0)%>(<%= ary.dig(0,1)%>)<br><br>
+     <%= ary.dig(1,0)%>(<%= ary.dig(1,1)%>)<br><br>
+     <%= ary.dig(2,0)%>(<%= ary.dig(2,1)%>)<br><br>
+
+    <%end%>
+
+
+    <%= ary.dig(1,0)%><br>
+    <%= ary.dig(1,1)%><br>
+    <%= ary.dig(2,0)%><br>
+    <%= ary.dig(2,1)%><br>
+
+    <br>
+    </div>

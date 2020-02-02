@@ -1,43 +1,48 @@
 
-<p></p>
-<!--ここから先が検索機能の実装部-->
-<%= form_tag sorts_path, :method => 'get' do %> <%#　projects_pathはモデル名で読みかえること %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "検索", :name => nil %>
-  </p>
-<% end %>
-<br>
-検索結果：<%= @count_post %>件です
-<div>
 
-<% @sorts.each do |sort| %><br>
-  <!--コメント-->
-  <p><%= sort.comment %></p>
-  <!--画像-->
-  <%= link_to  sort.avatar, "data-lightbox" => sort.avatar do %>
-  <%= image_tag sort.avatar, height: '98%', :style=>"width:98%;" %>
-  <% end %>
-<br>
-<br>
-  <!--アイドルの属性タグ-->
-タグ： <%= if sort.idoltype == 1 then
-        "Cute"
-      elsif sort.idoltype == 2 then
-        "Cool"
-      elsif sort.idoltype == 3 then
-        "Passion"
-       else
-        "All" end %>,
+    <!--<div class="intro2">
+    デレステのスクリーンショットをよくツイッターで見ているのですが、
+    どんなに素晴らしい切り抜きでもツイッターの仕様上どんどん埋もれていくのがもったいないと思い、
+    <b>デレステ専用の画像投稿サイト</b>を作ってみました。
+    勉強も兼ねているので、色々チグハグな部分がありますが、よかったら使ってみてください！！
+    <br>
+    ※デレステのスクショ以外の投稿は控えて頂けますようお願い申し上げます。
+    </div>-->
+    <div class="post_idol_list">
+    <!--対象カラムを配列で取得-->
+    <!--block = Image.pluck(:idolname)-->
+    <% block = Image.pluck(:idolname)%>
+    <%  block.count %>
+    <!--重複しているカラムをそれぞれ塊として取得-->
+    <!--block.group_by(&:itself)-->
 
-      <!--MV設定タグ-->
-      <%= if sort.mv == 1 then
-        "通常MV"
-       elsif sort.mv == 2 then
-        "AR" end %>,
-      <!--アイドル名タグ-->
-      <%= sort.idolname %>
-      <hr><!--棒-->
-<br>
-  <% end %>
-</div>
+    <!--hashのvalueを数字に変換-->
+    <% hash_count = block.group_by(&:itself)%>
+    <% hash_count = block.group_by(&:itself).transform_values(&:size)%>
+    <!--hashのvalueのみ取得-->
+    <% hash_count.values %>
+    <!--hashを配列に変換-->
+    <% ary_count = hash_count.to_a %>
+    <!--降順に並び替え-->
+    <% ary_count.sort_by {|k,v| v}.reverse%>
+
+    <!--ary_count.dig配列初期値-->
+    <% idolname = 0 %>
+    <!--ary_count.dig配列初期値-->
+    <% post_count_left = 0 %>
+    <!--ary_count.dig配列初期値-->
+    <% post_count_right = 1 %>
+
+    <div class="sorts_title">投稿数早見一覧</div><br><hr>
+    <div class="sorts_content">
+    <!--投稿されたアイドルの件数をそれぞれ取得-->
+  <% hash_count.count.times do %>
+    <%= ary_count.dig(idolname, post_count_left) %>(<%= ary_count.dig(idolname, post_count_right) %>)<br>
+    <!--配列カウントアップ-->
+    <% idolname += 1 %>
+    <hr>
+  <%end%>
+    <br>
+    <br>
+  </div><!--class="sorts_content"-->
+</div><!--class="post_idol_list"-->
