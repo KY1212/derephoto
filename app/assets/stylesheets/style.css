@@ -18,6 +18,8 @@ flex-direction: column;
 min-height: 100vh;
 }
 
+.no-underline{text-decoration:none !important;}
+
 
 	.like {
 		font-size: 16px;
@@ -53,6 +55,23 @@ min-height: 100vh;
 		 margin-top: -29.3px;
 		 font-size: 20px;
 		 color: grey;
+	 }
+
+	 .login_title {
+		 margin-top: 30px;
+	 	text-align: center;
+	 }
+	 .login_link {
+		margin-top: 5px;
+		text-align: center;
+		line-height: 40px;
+	 }
+	 .login_form {
+	 	margin-top: 30px;
+	 		margin-left: 150px;
+	 }
+	 .signup_font {
+		 font-size: 15px;
 	 }
 
 

@@ -56,7 +56,7 @@
                   <%= link_to "ログアウト",destroy_user_session_path, method: :delete,:style=>"color:white;" %><br>
                   <%= link_to "マイページ","/users/#{current_user.id}",:style=>"color:white;" %><br>
                 <%else%>
-                  <br><%= link_to 'Twitterでログイン！', user_twitter_omniauth_authorize_path,:style=>"color:white;"  %><br>
+                  <br><%= link_to 'Twitterでログイン！', user_session_url,:style=>"color:white;"  %><br>
                 <%end%>
                 <%= link_to "投稿数早見一覧", "/sorts",:style=>"color:white;" %><br>
                 <%= link_to "このサイトについて", "/users",:style=>"color:white;" %><br>
@@ -110,7 +110,7 @@
                   <%= link_to "ログアウト",destroy_user_session_path, method: :delete,:style=>"color:#007BBB;" %>
                   <%= link_to "マイページ","/users/#{current_user.id}" %>
                 <%else%>
-                  <%= link_to 'Twitterでログイン！', user_twitter_omniauth_authorize_path,:style=>"color:#007BBB;"  %>
+                  <%= link_to 'Twitterでログイン！', user_session_url,:style=>"color:#007BBB;"  %>
                 <%end%><br>
               </div>
             </div>

@@ -61,7 +61,8 @@ end
     end
 
   else
-    render templete: "users/sign_in"
+    flash[:danger] = "ログインしてください"
+    redirect_to user_session_url
   end
   end
 

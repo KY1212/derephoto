@@ -1,0 +1,29 @@
+
+
+<div class="login_title">デレステSS保管庫(仮)にログイン</div>
+  <div class="login_form">
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%= f.email_field :email, autofocus: true, placeholder: "Eメールアドレス" %>
+  </div>
+
+  <div class="field">
+    <br />
+    <%= f.password_field :password, placeholder: "パスワード" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+      <button type="submit" class="btn btn-success btn-sm">ログイン</button>
+  </div>
+<% end %>
+</div>
+
+<%= render "users/shared/links" %>
