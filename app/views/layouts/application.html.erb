@@ -87,8 +87,12 @@
           <div class="sidebar col-md-4 d-none d-lg-block">
 
             <!--検索-->
-            <div class="side-4 sidebar msr_box03 ">
-              <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">検索</div></h3><br>
+            <div class="side-4 sidebar msr_box03">
+              <h3 class="ttl">
+                <div style="font-weight: bold; font-size: 23px;">
+                  <i class="fa fa-search"></i>&nbsp;検索
+                </div>
+              </h3><br>
               <div class="inside">
                 <!--検索フォーム-->
                 <center><div class="form-group">
@@ -102,7 +106,11 @@
 
             <!--ログイン-->
             <div class="side-1 sidebar msr_box03 ">
-              <h3 class="ttl"><div style="font-weight: bold; font-size: 23px;">ログイン</div></h3><br>
+              <h3 class="ttl">
+                <div style="font-weight: bold; font-size: 23px;">
+                  <i class="fa fa-sign-in"></i>&nbsp;ログイン
+                </div>
+              </h3><br>
               <div class="inside">
 
                 <%if user_signed_in? %>
@@ -117,7 +125,9 @@
             <!--キーワード-->
             <div class="side-2 sidebar msr_box03 ">
               <h3 class="ttl">
-                <div style="font-weight: bold; font-size: 23px;">画像ソート</div>
+                <div style="font-weight: bold; font-size: 23px;">
+                  <i class="fa fa-sort"></i>&nbsp画像ソート
+                </div>
               </h3>
               <!--対象カラムを配列で取得-->
               <div class="inside"><br>
@@ -127,7 +137,10 @@
             <!--諸々の紹介-->
             <div class="side-3 sidebar msr_box03 ">
               <h3 class="ttl">
-                <div style="font-weight: bold; font-size: 23px;">サイト紹介</div></h3><br>
+                <div style="font-weight: bold; font-size: 23px;">
+                  <i class="fa fa-info-circle"></i>&nbspサイト紹介
+                </div>
+              </h3><br>
                   <div class="inside">
                     <%= link_to "このサイトについて", "/users",:style=>"color:#007BBB;" %><br>
                   </div>
