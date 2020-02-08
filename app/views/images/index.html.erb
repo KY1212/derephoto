@@ -123,21 +123,26 @@ weekday[Date.parse(date).wday] %>)
 <br>
 <br>
   <!--アイドルの属性タグ-->
-  タグ： <%= if image.idoltype == 1 then
-        "Cute"
+タグ：<%= if image.idoltype == 1 then
+        link_to "Cute", controller: "images", action: "index", images_idoltype: image.idoltype
       elsif image.idoltype == 2 then
-        "Cool"
+        link_to "Cool", controller: "images", action: "index", images_idoltype: image.idoltype
       elsif image.idoltype == 3 then
-        "Passion"
-       else
-        "All" end %>,
+        link_to "Passion", controller: "images", action: "index", images_idoltype: image.idoltype
+      else
+        link_to "All", controller: "images", action: "index", images_idoltype: image.idoltype
+      end %>,
 
       <!--MV設定タグ-->
       <%= if image.mv == 1 then
-        "通常MV"
+       link_to "通常MV", controller: "images", action: "index", images_mv: image.mv
        elsif image.mv == 2 then
-        "AR" end %>,
+       link_to "AR", controller: "images", action: "index", images_mv: image.mv
+        end %>,
       <!--アイドル名タグ-->
-      <%= image.idolname %>
+      <%#<%= image.idolname %>
+      <!--imagesのindexActionにパラメータを渡す-->
+      <%= link_to image.idolname, controller: "images", action: "index", images_idolname: image.idolname%>
+
 </div><!--1postのまとまり-->
 <% end %>
