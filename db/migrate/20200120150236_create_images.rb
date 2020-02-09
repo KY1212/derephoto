@@ -3,8 +3,8 @@ class CreateImages < ActiveRecord::Migration[5.2]
     create_table :images do |t|
       t.string :name
       t.text :comment
-      t.integer :idoltype
-      t.integer :mv
+      t.string :idoltype
+      t.string :mv
       t.string :idolname
       t.integer :user_id
       t.integer :likes_count

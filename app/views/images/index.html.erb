@@ -34,16 +34,16 @@
           <%= form.label :idoltype,  "アイドルのタイプ(必須)", class: "col-md-8 control-label" %>
           <div class="col-md-10">
             <label>
-                <%= form.radio_button :idoltype, 1 %> Cute
+                <%= form.radio_button :idoltype, "Cute" %> Cute
             </label>
             <label>
-                <%= form.radio_button :idoltype, 2 %> Cool
+                <%= form.radio_button :idoltype, "Cool" %> Cool
             </label>
             <label>
-                <%= form.radio_button :idoltype, 3 %> Passion
+                <%= form.radio_button :idoltype, "Passion" %> Passion
             </label>
             <label>
-                <%= form.radio_button :idoltype, 4 %> All
+                <%= form.radio_button :idoltype, "All" %> All
             </label>
           </div>
           <br>
@@ -52,9 +52,9 @@
           <%= form.label :mv,  "MVの種類(必須)", class: "col-md-8 control-label" %>
           <div class="col-md-8">
             <label>
-              <%= form.radio_button :mv, 1 %> 通常MV </label>
+              <%= form.radio_button :mv, "通常MV" %> 通常MV </label>
             <label>
-              <%= form.radio_button :mv, 2 %> AR </label><br>
+              <%= form.radio_button :mv, "AR" %> AR </label><br>
           </div>
 
 　           <!--画像選択-->
@@ -123,26 +123,18 @@ weekday[Date.parse(date).wday] %>)
 <br>
 <br>
   <!--アイドルの属性タグ-->
-タグ：<%= if image.idoltype == 1 then
-        link_to "Cute", controller: "images", action: "index", images_idoltype: image.idoltype
-      elsif image.idoltype == 2 then
-        link_to "Cool", controller: "images", action: "index", images_idoltype: image.idoltype
-      elsif image.idoltype == 3 then
-        link_to "Passion", controller: "images", action: "index", images_idoltype: image.idoltype
-      else
-        link_to "All", controller: "images", action: "index", images_idoltype: image.idoltype
-      end %>,
-
-      <!--MV設定タグ-->
-      <%= if image.mv == 1 then
-       link_to "通常MV", controller: "images", action: "index", images_mv: image.mv
-       elsif image.mv == 2 then
-       link_to "AR", controller: "images", action: "index", images_mv: image.mv
-        end %>,
-      <!--アイドル名タグ-->
-      <%#<%= image.idolname %>
-      <!--imagesのindexActionにパラメータを渡す-->
-      <%= link_to image.idolname, controller: "images", action: "index", images_idolname: image.idolname%>
+   <button type="button" class="btn btn-light btn-sm">
+    <%= link_to image.idoltype, {controller: "images", action: "index", images_idoltype: image.idoltype}, class: "color_gray no-underline"%>
+   </button>
+  <!--MV設定タグ-->
+  <button type="button" class="btn btn-light btn-sm">
+  <%= link_to image.mv, {controller: "images", action: "index", images_mv: image.mv}, class: "color_gray no-underline"%>
+  </button>
+  <!--アイドル名タグ-->
+  <!--imagesのindexActionにパラメータを渡す-->
+  <button type="button" class="btn btn-light btn-sm">
+  <%= link_to image.idolname, {controller: "images", action: "index", images_idolname: image.idolname}, class: "color_gray no-underline"%>
+  </button>
 
 </div><!--1postのまとまり-->
-<% end %>
+<% end %><br>

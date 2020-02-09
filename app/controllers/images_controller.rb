@@ -4,30 +4,32 @@ class ImagesController < ApplicationController
     @images = Image.all
 
 
+    #タグリンク idolname
+    if params[:images_idolname].blank?
+      @count_post = @images.count
+    else
+      @images = Image.new
+      @images = Image.where(idolname: params[:images_idolname])
+    end
 
-  #タグリンク
+
+  #タグリンク idoltype
   if params[:images_idoltype].blank?
     @count_post = @images.count
   else
     @images = Image.new
-    @images = Image.search(params[:images_idoltype])
+    @images = Image.where(idoltype: params[:images_idoltype])
   end
 
-  #タグリンク
+  #タグリンク mv
   if params[:images_mv].blank?
     @count_post = @images.count
   else
     @images = Image.new
-    @images = Image.search(params[:images_mv])
+    @images = Image.where(mv: params[:images_mv])
   end
 
-  #タグリンク
-  if params[:images_idolname].blank?
-    @count_post = @images.count
-  else
-    @images = Image.new
-    @images = Image.search(params[:images_idolname])
-  end
+
 
   #検索
   if params[:idolname].blank?
