@@ -11,4 +11,6 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @images = @user.images
   end
+
+
 end
