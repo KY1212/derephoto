@@ -131,7 +131,7 @@ weekday[Date.parse(date).wday] %>)
   <%= link_to image.mv, {controller: "images", action: "index", images_mv: image.mv}, class: "color_gray no-underline"%>
   </button>
   <!--アイドル名タグ-->
-  <!--imagesのindexActionにパラメータを渡す-->
+  <!--imagesのindexActionにパラメータを渡す 第二引数を明示的にハッシュでクラスと共存-->
   <button type="button" class="btn btn-light btn-sm">
   <%= link_to image.idolname, {controller: "images", action: "index", images_idolname: image.idolname}, class: "color_gray no-underline"%>
   </button>
