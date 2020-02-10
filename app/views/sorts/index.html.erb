@@ -1,13 +1,3 @@
-
-
-    <!--<div class="intro2">
-    デレステのスクリーンショットをよくツイッターで見ているのですが、
-    どんなに素晴らしい切り抜きでもツイッターの仕様上どんどん埋もれていくのがもったいないと思い、
-    <b>デレステ専用の画像投稿サイト</b>を作ってみました。
-    勉強も兼ねているので、色々チグハグな部分がありますが、よかったら使ってみてください！！
-    <br>
-    ※デレステのスクショ以外の投稿は控えて頂けますようお願い申し上げます。
-    </div>-->
     <div class="post_idol_list">
     <!--対象カラムを配列で取得-->
     <!--block = Image.pluck(:idolname)-->
@@ -17,7 +7,7 @@
     <!--block.group_by(&:itself)-->
 
     <!--hashのvalueを数字に変換-->
-    <% hash_count = block.group_by(&:itself)%>
+    <% hash_count = block.group_by(&:itself)%><br>
     <% hash_count = block.group_by(&:itself).transform_values(&:size)%>
     <!--hashのvalueのみ取得-->
     <% hash_count.values %>
@@ -26,22 +16,34 @@
     <!--降順に並び替え-->
     <% ary_count.sort_by {|k,v| v}.reverse%>
 
-    <!--ary_count.dig配列初期値-->
-    <% idolname = 0 %>
-    <!--ary_count.dig配列初期値-->
-    <% post_count_left = 0 %>
-    <!--ary_count.dig配列初期値-->
-    <% post_count_right = 1 %>
-
     <div class="sorts_title">投稿数早見一覧</div><br><hr>
     <div class="sorts_content">
-    <!--投稿されたアイドルの件数をそれぞれ取得-->
-  <% hash_count.count.times do %>
-    <%= ary_count.dig(idolname, post_count_left) %>(<%= ary_count.dig(idolname, post_count_right) %>)<br>
-    <!--配列カウントアップ-->
-    <% idolname += 1 %>
-    <hr>
+
+
+
+  <% @sorts.zip(hash_count).each do |image, hash_count| %>
+  <!--idolnameをハッシュ化したものを配列に戻す-->
+  <%value_count = hash_count.to_a%>
+
+<%if value_count[0].to_s == image.idolname || value_count[1].to_i >= 1%>
+
+<!--各リンク-->
+<%= link_to value_count[0].to_s,
+{controller: "images", action: "index", images_idolname: value_count[0].to_s},class: "color_gray no-underline"%>
+
+  <!--配列の第一要素が空の場合、非表示-->
+  <%unless value_count[1].to_s.blank?%>
+    <!--各アイドルの投稿数-->
+    (<%=value_count[1]  %>)<hr>
+    <%else%>
   <%end%>
+
+<%else%>
+
+
+          <%end%><!--if value_count[0].to_i >= 1-->
+  <%end%><!--@sorts.zip(hash_count).each do |image, hash_count|-->
+
     <br>
     <br>
   </div><!--class="sorts_content"-->
