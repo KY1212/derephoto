@@ -73,6 +73,8 @@ end
 
 
   def create
+
+
     if user_signed_in?
 
     @image = Image.new(image_params)

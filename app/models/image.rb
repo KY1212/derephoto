@@ -2,13 +2,20 @@ class Image < ApplicationRecord
   has_one_attached :avatar
   has_many :likes, dependent: :destroy
   has_many :liking_users, through: :likes, source: :user
-
   belongs_to :user
+  #空かどうか
   validates :idolname, presence: true
   validates :idoltype, presence: true
   validates :mv, presence: true
-
+  #ファイル形式、空かどうか
   validate :avatar_presence
+
+  idols = Idol.all
+  #:idolnameを取り出し、配列で作成。定数に代入
+  IDOLNAME_ALUES = idols.map(&:idolname)
+  #idolnameがinclusion内で定義した値に含まれているか
+  validates :idolname, inclusion: { in: IDOLNAME_ALUES }
+
 
   def self.search(idolname) #self.でクラスメソッドとしている
 
@@ -19,9 +26,6 @@ class Image < ApplicationRecord
       Image.all #全て表示。
     end
   end
-
-
-
 
     def avatar_presence
       if avatar.attached?
