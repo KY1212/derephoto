@@ -9,8 +9,13 @@
 <% @images.each do |image| %>
 
 <div class="col-md-12 d-none d-lg-block" >
-  <p><%= image.name %></p>
-  &nbsp;名無しのPさん&emsp;<%= image.created_at.to_s(:datetime) %>
+  <%unless image.name.blank?%>
+  <%= image.name %>
+  <%else%>
+  <!--nameの値が空の場合、「名無しのPさん」と表示させる-->
+  名無しのPさん&emsp;
+  <%end%>
+<%= image.created_at.to_s(:datetime) %>
 
   <!--曜日フォーマット情報をdateに格納-->
   <% date = image.created_at.to_s(:datetime) %>
@@ -27,8 +32,13 @@
 
 
 <div class="col-xs-12 col-md-12 d-md-none show_like" >
-  <p><%= image.name %></p>
-  名無しのPさん&nbsp;<%= image.created_at.to_s(:datetime) %>
+  <%unless image.name.blank?%>
+  <%= image.name %>
+  <%else%>
+  <!--nameの値が空の場合、「名無しのPさん」と表示させる-->
+  名無しのPさん&emsp;
+  <%end%>
+<%= image.created_at.to_s(:datetime) %>
 
   <!--曜日フォーマット情報をdateに格納-->
   <% date = image.created_at.to_s(:datetime) %>
@@ -47,40 +57,17 @@
 </div>
 
 <!--コメント-->
-<p><%= image.comment %></p>
+<p>&nbsp;&nbsp;<%= image.comment %></p>
 
-  <br><br>
+
     <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
     <%= image_tag image.avatar, height: '98%', :style=>"width:98%;" %>
   <% end %><br><br>
 
-  <!--アイドルの属性タグ-->
-  タグ： <%= if image.idoltype == 1 then
-      "Cute"
-    elsif image.idoltype == 2 then
-      "Cool"
-    elsif image.idoltype == 3 then
-      "Passion"
-     else
-      "All" end %>,
-
-    <!--MV設定タグ-->
-    <%= if image.mv == 1 then
-      "通常MV"
-     elsif image.mv == 2 then
-      "AR" end %>,
-    <!--アイドル名タグ-->
-    <%= image.idolname %>
-    <br>
     <!--特定のユーザーの投稿累計-->
     <%if image.user_id == current_user.id%>
     <% else %>
     <%end%><hr>
   <% end %>
-
-
-
-
-
 
 </div>
