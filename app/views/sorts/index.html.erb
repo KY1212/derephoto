@@ -21,27 +21,24 @@
 
 
 
-  <% @sorts.zip(hash_count).each do |image, hash_count| %>
-  <!--idolnameをハッシュ化したものを配列に戻す-->
-  <%value_count = hash_count.to_a%>
+      <% @sorts.zip(hash_count).each do |image, hash_count| %>
+      <!--idolnameをハッシュ化したものを配列に戻す-->
+      <%value_count = hash_count.to_a%>
+      <!--idolnameと等しい且つ、value_count[1]の値が1以上の場合そのリンクを表示-->
+      <%if value_count[0].to_s == image.idolname || value_count[1].to_i >= 1%>
+      <!--各リンク-->
+      <%= link_to value_count[0].to_s,
+      {controller: "images", action: "index", images_idolname: value_count[0].to_s},class: "color_gray no-underline"%>
 
-<%if value_count[0].to_s == image.idolname || value_count[1].to_i >= 1%>
+      <!--配列の第一要素が空の場合、(投稿数)の部分を非表示-->
+      <%unless value_count[1].to_s.blank?%>
+      <!--各アイドルの投稿数-->
+      (<%=value_count[1]  %>)<hr>
+      <%else%>
+      <%end%>
 
-<!--各リンク-->
-<%= link_to value_count[0].to_s,
-{controller: "images", action: "index", images_idolname: value_count[0].to_s},class: "color_gray no-underline"%>
-
-  <!--配列の第一要素が空の場合、非表示-->
-  <%unless value_count[1].to_s.blank?%>
-    <!--各アイドルの投稿数-->
-    (<%=value_count[1]  %>)<hr>
-    <%else%>
-  <%end%>
-
-<%else%>
-
-
-          <%end%><!--if value_count[0].to_i >= 1-->
+      <%else%>
+      <%end%><!--if value_count[0].to_i >= 1-->
   <%end%><!--@sorts.zip(hash_count).each do |image, hash_count|-->
 
     <br>

@@ -72,15 +72,13 @@
 
           <!--フラッシュメッセージ-->
           <%= render 'layouts/flash' %>
-
           <div class="row">
+
 
           <!--コンテンツ-->
           <div class="content content_post col-xs-12 col-md-12 col-lg-6 offset-md-1">
             <%= yield %>
           </div>
-
-
 
 
           <!--サイドバー-->
@@ -93,6 +91,8 @@
                 </div>
               </h3><br>
               <div class="inside">
+
+
                 <!--検索フォーム-->
                 <center><div class="form-group">
                   <%= form_tag images_path, :method => 'get' do %>
@@ -103,6 +103,7 @@
               </div>
             </div>
 
+
             <!--ログイン-->
             <div class="side-1 sidebar msr_box03 ">
               <h3 class="ttl">
@@ -111,7 +112,6 @@
                 </div>
               </h3><br>
               <div class="inside">
-
                 <%if user_signed_in? %>
                   <%=current_user.id%>.<%=current_user.name%>さん<br>
                   <%= link_to "ログアウト",destroy_user_session_path, method: :delete,:style=>"color:#007BBB;" %>
@@ -121,6 +121,8 @@
                 <%end%><br>
               </div>
             </div>
+
+
             <!--キーワード-->
             <div class="side-2 sidebar msr_box03 ">
               <h3 class="ttl">
@@ -128,11 +130,15 @@
                   <i class="fa fa-sort"></i>&nbsp画像ソート
                 </div>
               </h3>
+
+
               <!--対象カラムを配列で取得-->
               <div class="inside"><br>
                 <%= link_to "投稿数早見一覧", "/sorts",:style=>"color:#007BBB;" %><br>
               </div>
             </div>
+
+
             <!--諸々の紹介-->
             <div class="side-3 sidebar msr_box03 ">
               <h3 class="ttl">
@@ -142,7 +148,6 @@
               </h3><br>
                   <div class="inside">
                     <%= link_to "このサイトについて", "/users",:style=>"color:#007BBB;" %><br>
-
                       <a class="twitter-follow-button" href="https://twitter.com/Boston12121?ref_src=twsrc%5Etfw"
                        data-size="large" data-text="@Boston12121をフォロー" data-show-screen-name="false"
                        data-lang="ja" data-show-count="false">Follow @Boston12121</a>
@@ -159,7 +164,6 @@
         <div id="footerWrap">
           <div id="footer">
             <center><br>
-
             <%= link_to "Vastworld.org", "https://vastworld.org/",:style=>"color:#007BBB" %> |
             <%= link_to "なんか(後で)", "/users",:style=>"color:#007BBB" %> |
             <%= link_to "サイト規約", "/users",:style=>"color:#007BBB" %>
@@ -168,6 +172,7 @@
             </center ><br>
           </div><!--id="footer"-->
         </div><!--id="footerWrap"-->
+        
     </div><!--class="color_gray"-->
   </body>
 </html>

@@ -85,6 +85,7 @@
 <div><!--1postのまとまり-->
 
   <div class="col-md-12 d-none d-lg-block" >
+    <!--nameの値が入っている場合image.name-->
     <%unless image.name.blank?%>
     <%= image.name %>
     <%else%>
@@ -96,7 +97,7 @@
   <% date = image.created_at.to_s(:datetime) %>
   (<%= weekday = %w[日 月 火 水 木 金 土]
   weekday[Date.parse(date).wday] %>)
-  <!--いいねボタンのビュー-->
+  <!--いいねボタンのビュー呼び出し-->
   <%= render 'likes/like', image: image %>
 </div>
 

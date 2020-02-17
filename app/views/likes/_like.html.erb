@@ -1,5 +1,5 @@
 <div class="like-link" id="like-link-<%= image.id %>">
-
+  <!--ログインしていない場合、いいねボタン非表示にする-->
   <% if user_signed_in?%>
 
   <% if current_user.likes.find_by(image_id: image.id) %>
