@@ -2,43 +2,56 @@ class ImagesController < ApplicationController
 
   def index
     @images = Image.all.order(id: "DESC")
-
+    #ページネーション
+    @images = @images.page(params[:page])
+    #全ての投稿数取得
+    @images_count = Image.count
 
     #タグリンク idolname
     if params[:images_idolname].blank?
-      @count_post = @images.count
     else
       @images = Image.new
-      @images = Image.where(idolname: params[:images_idolname])
+      #タグの文字列がidolnameにいくつ存在するか
+      @images = Image.where(idolname: params[:images_idolname]).order(id: "DESC")
+      @images = @images.page(params[:page])
+      #タグidolnameのレコード数をcountで取得
+      @images_count = Image.where(idolname: params[:images_idolname]).count
     end
 
+    #タグリンク idoltype
+    if params[:images_idoltype].blank?
+    else
+      @images = Image.new
+      #タグの文字列がidoltypeにいくつ存在するか
+      @images = Image.where(idoltype: params[:images_idoltype]).order(id: "DESC")
+      @images = @images.page(params[:page])
+      #タグidoltypeのレコード数をcountで取得
+      @images_count = Image.where(idoltype: params[:images_idoltype]).count
+    end
 
-  #タグリンク idoltype
-  if params[:images_idoltype].blank?
-    @count_post = @images.count
-  else
-    @images = Image.new
-    @images = Image.where(idoltype: params[:images_idoltype])
-  end
+    #タグリンク mv
+    if params[:images_mv].blank?
+    else
+      @images = Image.new
+      #タグの文字列がmvにいくつ存在するか
+      @images = Image.where(mv: params[:images_mv]).order(id: "DESC")
+      @images = @images.page(params[:page])
+      #タグimages_mvのレコード数をcountで取得
+      @images_count = Image.where(mv: params[:images_mv]).count
+    end
 
-  #タグリンク mv
-  if params[:images_mv].blank?
-    @count_post = @images.count
-  else
-    @images = Image.new
-    @images = Image.where(mv: params[:images_mv])
-  end
+    #検索フォーム
+    if params[:idolname].blank?
+    @search_count = Image.search(params[:idolname]).count
+    #検索結果0件の場合、viewにて0件だった旨をメッセージで表示
+    elsif @search_count == 0
 
-
-
-  #検索
-  if params[:idolname].blank?
-    @count_post = @images.count
-
-  else
-    @images = Image.search(params[:idolname])
-    @count_post = @images.count
-  end
+    else
+      @images = Image.search(params[:idolname]).order(id: "DESC")
+      @images = @images.page(params[:page])
+      #フォームに入力された文字列をidolnameから検索、存在したレコード数をcountで取得
+      @images_count = Image.search(params[:idolname]).count
+    end
 
     @image = Image.new
   end

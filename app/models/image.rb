@@ -9,6 +9,8 @@ class Image < ApplicationRecord
   validates :mv, presence: true
   #ファイル形式、空かどうか
   validate :avatar_presence
+  paginates_per 5  # 1ページあたり5項目表示
+
 
   idols = Idol.all
   #:idolnameを取り出し、配列で作成。定数に代入

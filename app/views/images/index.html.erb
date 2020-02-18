@@ -78,9 +78,13 @@
 
 
 <hr><!--棒-->
-  投稿数：<%= @count_post %>件
-
+<% if @images_count == 0 %>
+<%= "検索結果 0件でした。" %>
+<%else%>
+投稿数：<%= @images_count %>件
+<%end%>
 <% @images.each do |image| %>
+
 <hr><!--棒-->
 <div><!--1postのまとまり-->
 
@@ -138,3 +142,4 @@ weekday[Date.parse(date).wday] %>)
 
 </div><!--1postのまとまり-->
 <% end %><br>
+<%= paginate @images %>
