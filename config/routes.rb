@@ -10,19 +10,25 @@ Rails.application.routes.draw do
       get "auto_complete"
     end
   end
-
+  resources :images do
+    member do
+      get :edit
+    end
+  end
 
 post "/" => "images#index"
 get "/images" => "images#index"
 get "/users" => "users#index"
 get "/sorts" => "sorts#index"
 
+
 post   '/like/:image_id' => 'likes#like',   as: 'like'
 delete '/like/:image_id' => 'likes#unlike', as: 'unlike'
 
 get "/images" => "images#test"
 get "/users/:id" => "users#show"
-
+get "/images/:id/edit" => "images#edit"
+post "/images/:id/update" => "images#update"
 #indexページから削除
 delete "/images/:id" => "images#destroy"
 #マイページから削除

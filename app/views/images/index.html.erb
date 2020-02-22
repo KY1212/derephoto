@@ -119,7 +119,7 @@ weekday[Date.parse(date).wday] %>)
 </div>
 
   <!--コメント-->
-  <p>&emsp;<%= image.comment %></p>
+  <div class="frame_box"><%= image.comment %></div>
   <!--画像-->
   <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
   <%= image_tag image.avatar, height: '98%', :style=>"width:98%;" %>

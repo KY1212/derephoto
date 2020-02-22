@@ -79,6 +79,17 @@ min-height: 100vh;
 	overflow: hidden;
 }
 
+.frame_box{
+	padding: 0.5em 1em;
+	margin: 2em 0;
+	border: double 5px #f0f0f0;
+	margin-top: 12px;
+}
+.frame_box p {
+		margin: 0;
+		padding: 0;
+}
+
 /* ----- ヘッダー ----- */
 header {
 margin:  0 auto;

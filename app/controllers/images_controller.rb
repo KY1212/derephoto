@@ -54,6 +54,7 @@ class ImagesController < ApplicationController
     end
 
     @image = Image.new
+    Image.find_by(id: params[:id])
   end
 
 
@@ -100,6 +101,9 @@ class ImagesController < ApplicationController
       else
         @images = Image.all
         flash.now[:danger] = "投稿に失敗しました。投稿フォームをもう一度確認してみてください。"
+        @images = @images.page(params[:page])
+        @images_count = Image.count
+
         render "index"
         return
       end
@@ -109,6 +113,21 @@ class ImagesController < ApplicationController
       redirect_to user_session_url
     end
   end
+
+  def edit
+    @image = Image.find_by(id: params[:id])
+  end
+
+  def update
+  @image_update = Image.find_by(id: params[:id])
+    if @image_update = @image_update.update(image_params)
+      flash[:success] = '投稿を編集しました。'
+      redirect_to root_url
+    else
+      flash[:danger] = '更新に失敗しました。画像選択フォーム、アイドル名が入っているかを確認してください'
+      redirect_to "/images/#{params[:id]}/edit"
+    end
+end
 
   def destroy
    #destroyメソッドを使用し対象のツイートを削除する。

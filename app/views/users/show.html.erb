@@ -25,9 +25,10 @@
   <!--いいねボタンのビュー-->
   <%= render 'likes/like', image: image %>
   <%if image.user_id == current_user.id  %>
-   &nbsp;<%= link_to '投稿を削除', image, method: :delete,:style=>"color:grey;", data: {confirm: "投稿を削除しますか？"} %>
   <%else%>
   <%end%>
+  &nbsp;<%= link_to '投稿を削除', image, method: :delete,:style=>"color:grey;", data: {confirm: "投稿を削除しますか？"} %>
+  &nbsp;<%= link_to("編集", "/images/#{image.id}/edit",:style=>"color:grey;") %>
 </div>
 
 
@@ -51,18 +52,34 @@
   </div>
   <!--削除リンク-->
   <%if image.user_id == current_user.id  %>
-  <%= link_to '投稿を削除', image, method: :delete,:style=>"color:grey;", data: {confirm: "投稿を削除しますか？"} %>
   <%else%>
   <%end%>
+  &nbsp;<%= link_to '投稿を削除', image, method: :delete,:style=>"color:grey;", data: {confirm: "投稿を削除しますか？"} %>
+  &nbsp;<%= link_to("編集", "/images/#{image.id}/edit",:style=>"color:grey;") %>
 </div>
 
 <!--コメント-->
-<p>&nbsp;&nbsp;<%= image.comment %></p>
+<div class="frame_box"><%= image.comment %></div>
 
 
     <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
     <%= image_tag image.avatar, height: '98%', :style=>"width:98%;" %>
+
   <% end %><br><br>
+
+  <!--アイドルの属性タグ-->
+   <button type="button" class="btn btn-light btn-sm">
+    <%= link_to image.idoltype, {controller: "images", action: "index", images_idoltype: image.idoltype}, class: "color_gray no-underline"%>
+   </button>
+  <!--MV設定タグ-->
+  <button type="button" class="btn btn-light btn-sm">
+  <%= link_to image.mv, {controller: "images", action: "index", images_mv: image.mv}, class: "color_gray no-underline"%>
+  </button>
+  <!--アイドル名タグ-->
+  <!--imagesのindexActionにパラメータを渡す 第二引数を明示的にハッシュでクラスと共存-->
+  <button type="button" class="btn btn-light btn-sm">
+  <%= link_to image.idolname, {controller: "images", action: "index", images_idolname: image.idolname}, class: "color_gray no-underline"%>
+  </button>
 
     <!--特定のユーザーの投稿累計-->
     <%if image.user_id == current_user.id%>

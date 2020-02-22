@@ -1,0 +1,62 @@
+<!--投稿フォーム-->
+<%= form_with model: @image, local: true do |form| %>
+
+<!--ハンドルネーム-->
+<div class="form-group">
+  <div class="col-md-8">
+    <%= form.text_field :name, class: "form-control", placeholder: "ハンドルネーム(任意)" %>
+  </div>
+</div>
+<!--コメント-->
+<div class="form-group">
+  <div class="col-md-8">
+    <%= form.text_area :comment, placeholder: "コメントを記入(任意)", class: "form-control", :size=>"60*10"%>
+  </div>
+</div>
+
+<!--アイドル名-->
+<div class="form-group">
+  <div class="col-md-8">
+    <%= form.text_field :idolname, id: :user_name, placeholder: "投稿するアイドル名(必須)" %>
+  </div>
+</div>
+<!--タイプ別-->
+<%= form.label :idoltype,  "アイドルのタイプ(必須)", class: "col-md-8 control-label" %>
+<div class="col-md-10">
+  <label>
+      <%= form.radio_button :idoltype, "Cute" %> Cute
+  </label>
+  <label>
+      <%= form.radio_button :idoltype, "Cool" %> Cool
+  </label>
+  <label>
+      <%= form.radio_button :idoltype, "Passion" %> Passion
+  </label>
+  <label>
+      <%= form.radio_button :idoltype, "All" %> All
+  </label>
+</div>
+
+<!--MVの種類-->
+<%= form.label :mv,  "MVの種類(必須)", class: "col-md-8 control-label" %>
+<div class="col-md-8">
+  <label>
+    <%= form.radio_button :mv, "通常MV" %> 通常MV </label>
+  <label>
+    <%= form.radio_button :mv, "AR" %> AR </label><br>
+</div>
+
+　           <!--画像の選択-->
+<div class="form-group">
+  <%= form.label :avatar,  "※画像を変更", class: "col-md-10 control-label" %>
+  <div class="col-md-8">
+    <%= form.file_field :avatar, class: "form-control-file" %>
+  </div>
+</div>
+<!--投稿ボタン-->
+<div class="center-block">
+  <div class="form-group"><br>
+    <center><%= form.submit name="投稿", class: "btn btn-default btn-primary"%></center>
+  </div>
+</div><!--p class="txt_a_ac"-->
+<% end %>

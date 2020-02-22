@@ -4,11 +4,15 @@ class Image < ApplicationRecord
   has_many :liking_users, through: :likes, source: :user
   belongs_to :user
   #空かどうか
+  validates :name,length: { in: 0..8 } #0以上8未満
+  validates :comment,length: { in: 0..70 } #0以上70未満
   validates :idolname, presence: true
   validates :idoltype, presence: true
   validates :mv, presence: true
   #ファイル形式、空かどうか
   validate :avatar_presence
+
+
   paginates_per 5  # 1ページあたり5項目表示
 
 
@@ -20,10 +24,8 @@ class Image < ApplicationRecord
 
 
   def self.search(idolname) #self.でクラスメソッドとしている
-
     if idolname # Controllerから渡されたパラメータが!= nilの場合は、titleカラムを部分一致検索
       Image.where(['idolname LIKE ?', "%#{idolname}%"])
-
     else
       Image.all #全て表示。
     end
