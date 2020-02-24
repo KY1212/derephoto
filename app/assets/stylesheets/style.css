@@ -18,6 +18,13 @@ flex-direction: column;
 min-height: 100vh;
 }
 
+.test_account {
+	margin-left: 50px;
+	font-size: 23px;
+	font-weight: bold;
+
+}
+
 .no-underline{text-decoration:none !important;}
 
 
