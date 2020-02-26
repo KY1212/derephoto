@@ -18,6 +18,12 @@ flex-direction: column;
 min-height: 100vh;
 }
 
+.update_title{
+	text-align: center;
+	font-weight: bold;
+	font-size: 24px;
+}
+
 .test_account {
 	margin-left: 50px;
 	font-size: 23px;

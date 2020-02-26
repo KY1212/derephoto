@@ -1,6 +1,9 @@
 <hr><!--棒-->
-
-<center><%=current_user.name%>さんの投稿履歴全件</center>
+<%if @user.name.blank?%>
+<div class="update_title">名無しのPさんの投稿履歴</div>
+<%else%>
+<div class="update_title"><%=current_user.name%>さんの投稿履歴</div>
+<%end%>
 
 <hr><!--棒-->
 <div><!--1postのまとまり-->
