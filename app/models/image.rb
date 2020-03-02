@@ -3,9 +3,11 @@ class Image < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liking_users, through: :likes, source: :user
   belongs_to :user
+  has_many :comments, dependent: :destroy
+
   #空かどうか
   validates :name,length: { in: 0..8 } #0以上8未満
-  validates :comment,length: { in: 0..70 } #0以上70未満
+  validates :comment,length: { in: 1..70 } #0以上70未満
   validates :idolname, presence: true
   validates :idoltype, presence: true
   validates :mv, presence: true

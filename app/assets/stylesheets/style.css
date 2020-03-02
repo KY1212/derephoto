@@ -18,6 +18,22 @@ flex-direction: column;
 min-height: 100vh;
 }
 
+a {
+  color: gray;
+  text-decoration: none;
+}
+
+.comment_link {
+text-align: right;
+margin-right: 50px;
+margin-top: 9px;
+}
+.comment_link_mobile {
+text-align: right;
+margin-right: 16px;
+margin-top: 13px;
+}
+
 .update_title{
 	text-align: center;
 	font-weight: bold;

@@ -57,7 +57,12 @@ class ImagesController < ApplicationController
     Image.find_by(id: params[:id])
   end
 
-
+  def show
+    @image = Image.find(params[:id])
+    @images = @image.avatar
+    @comments = @image.comments
+    @comment = @image.comments.build
+  end
 
   #動くかテスト
   def new

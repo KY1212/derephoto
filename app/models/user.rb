@@ -7,6 +7,7 @@ class User < ApplicationRecord
 has_many :images
 has_many :likes, dependent: :destroy
 has_many :like_stories, through: :likes, source: :image
+has_many :comments, dependent: :destroy
 
 def correct_user
   @image = current_user.images.find_by(id: params[:id])

@@ -1,0 +1,51 @@
+
+
+<div class="comment-wrapper border-top　mb-10">
+  <br />
+  <!--コメント-->
+  投稿者: 
+    <%unless @image.name.blank?%>
+      <%= @image.name %>
+    <%else%>
+      <!--nameの値が空の場合、「名無しのPさん」と表示させる-->
+      名無しのPさん&emsp;
+    <%end%>
+  <div class="frame_box"><%= @image.comment %></div>
+  <!--画像-->
+  <%= link_to  @image.avatar, "data-lightbox" => @image.avatar do %>
+  <%= image_tag @image.avatar, height: '98%', :style=>"width:98%;" %>
+  <% end %>
+
+  <p class="mt-5">コメント一覧</p>
+  <%@count = 0%>
+  <% @comments.each do |comment| %>
+    <hr><%@count+=1%>
+      <% unless comment.user.blank? %>
+        <% unless comment.user.name.blank? %>
+
+          <a href="<%= user_path(comment.user_id) %>">
+            <%= image_tag comment.user.image.to_s,class:"rounded-circle icon_image mr-1 mb-1"%>
+          </a>
+        <%else%>
+        <i class="fa fa-user"></i>
+        <%= link_to "名無しのPさん", user_path(comment.user_id),:style=>"color:gray;"%>
+
+        <%end%>
+        <%= comment.user.name unless comment.user.blank? %>
+        <br />
+        <%= comment.content %>
+      <%end%>
+
+    <br />
+
+  <% end %>
+  <!--ログインしていない場合、フォーム非表示-->
+  <% if user_signed_in? %>
+    <%= form_with(model: [@image, @comment], local: true) do |f| %>
+      <%= f.text_area :content, class: "form-control" %>
+      <%= button_tag type: "submit", class: "btn btn-success float-right mt-1" do %>
+        <i class="fa fa-commenting-o"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div><br>

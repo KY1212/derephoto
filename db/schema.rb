@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_024214) do
+ActiveRecord::Schema.define(version: 2020_02_26_142723) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 2020_01_29_024214) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id"
+    t.integer "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["image_id"], name: "index_comments_on_image_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "idols", force: :cascade do |t|
     t.string "idolname"
     t.string "hurigana"
@@ -49,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_01_29_024214) do
     t.string "idolname"
     t.integer "user_id"
     t.integer "likes_count"
+    t.integer "comments_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
