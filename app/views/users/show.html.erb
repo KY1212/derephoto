@@ -1,87 +1,82 @@
 <hr><!--棒-->
-<%if @user.name.blank?%>
-<div class="update_title">名無しのPさんの投稿履歴</div>
-<%else%>
-<div class="update_title"><%=current_user.name%>さんの投稿履歴</div>
-<%end%>
-
+  <%if @user.name.blank?%>
+    <div class="update_title">名無しのPさんの投稿履歴</div>
+  <%else%>
+    <div class="update_title"><%=current_user.name%>さんの投稿履歴</div>
+  <%end%>
 <hr><!--棒-->
+
 <div><!--1postのまとまり-->
+  <% @images.each do |image| %>
+
+  <div class="col-md-12 d-none d-lg-block" >
+    <%unless image.name.blank?%>
+      <%= image.name %>
+    <%else%>
+      <!--nameの値が空の場合、「名無しのPさん」と表示させる-->
+      名無しのPさん&emsp;
+    <%end%>
+    <!--曜日-->
+    <%= image.created_at.to_s(:datetime) %>
+    <!--曜日フォーマット情報をdateに格納-->
+    <% date = image.created_at.to_s(:datetime) %>
+    (<%= weekday = %w[日 月 火 水 木 金 土]
+    weekday[Date.parse(date).wday] %>)
+
+    <!--いいねボタンのビュー-->
+    <%= render 'likes/like', image: image %>
+    <%if image.user_id == current_user.id  %>
+    <%else%>
+    <%end%>
+      &nbsp;<%= link_to '投稿を削除', image, method: :delete,:style=>"color:grey;", data: {confirm: "投稿を削除しますか？"} %>
+      &nbsp;<%= link_to("編集", "/images/#{image.id}/edit",:style=>"color:grey;") %>
+  </div><!--class="col-md-12 d-none d-lg-block"-->
 
 
-<% @images.each do |image| %>
+  <div class="col-xs-12 col-md-12 d-md-none show_like" >
+    <%unless image.name.blank?%>
+      <%= image.name %>
+    <%else%>
+      <!--nameの値が空の場合、「名無しのPさん」と表示させる-->
+      名無しのPさん&emsp;
+    <%end%>
+    <%= image.created_at.to_s(:datetime) %>
 
-<div class="col-md-12 d-none d-lg-block" >
-  <%unless image.name.blank?%>
-  <%= image.name %>
-  <%else%>
-  <!--nameの値が空の場合、「名無しのPさん」と表示させる-->
-  名無しのPさん&emsp;
-  <%end%>
-<%= image.created_at.to_s(:datetime) %>
-
-  <!--曜日フォーマット情報をdateに格納-->
-  <% date = image.created_at.to_s(:datetime) %>
-  (<%= weekday = %w[日 月 火 水 木 金 土]
-  weekday[Date.parse(date).wday] %>)
-
-  <!--いいねボタンのビュー-->
-  <%= render 'likes/like', image: image %>
-  <%if image.user_id == current_user.id  %>
-  <%else%>
-  <%end%>
-  &nbsp;<%= link_to '投稿を削除', image, method: :delete,:style=>"color:grey;", data: {confirm: "投稿を削除しますか？"} %>
-  &nbsp;<%= link_to("編集", "/images/#{image.id}/edit",:style=>"color:grey;") %>
-</div>
-
-
-<div class="col-xs-12 col-md-12 d-md-none show_like" >
-  <%unless image.name.blank?%>
-  <%= image.name %>
-  <%else%>
-  <!--nameの値が空の場合、「名無しのPさん」と表示させる-->
-  名無しのPさん&emsp;
-  <%end%>
-<%= image.created_at.to_s(:datetime) %>
-
-  <!--曜日フォーマット情報をdateに格納-->
-  <% date = image.created_at.to_s(:datetime) %>
-  (<%= weekday = %w[日 月 火 水 木 金 土]
-  weekday[Date.parse(date).wday] %>)
+    <!--曜日フォーマット情報をdateに格納-->
+    <% date = image.created_at.to_s(:datetime) %>
+    (<%= weekday = %w[日 月 火 水 木 金 土]
+    weekday[Date.parse(date).wday] %>)
 
   <!--いいねボタンのビュー-->
   <div class="like_button">
-  <%= render 'likes/like', image: image %>
+    <%= render 'likes/like', image: image %>
   </div>
   <!--削除リンク-->
-  <%if image.user_id == current_user.id  %>
-  <%else%>
-  <%end%>
-  &nbsp;<%= link_to '投稿を削除', image, method: :delete,:style=>"color:grey;", data: {confirm: "投稿を削除しますか？"} %>
-  &nbsp;<%= link_to("編集", "/images/#{image.id}/edit",:style=>"color:grey;") %>
-</div>
+    <%if image.user_id == current_user.id  %>
+    <%else%>
+    <%end%>
+      &nbsp;<%= link_to '投稿を削除', image, method: :delete,:style=>"color:grey;", data: {confirm: "投稿を削除しますか？"} %>
+      &nbsp;<%= link_to("編集", "/images/#{image.id}/edit",:style=>"color:grey;") %>
+  </div>
 
-<!--コメント-->
-<div class="frame_box"><%= image.comment %></div>
-
-
+  <!--コメント-->
+  <div class="frame_box"><%= image.comment %></div>
     <%= link_to  image.avatar, "data-lightbox" => image.avatar do %>
     <%= image_tag image.avatar, height: '98%', :style=>"width:98%;" %>
-
-  <% end %><br><br>
+    <% end %><br><br>
 
   <!--アイドルの属性タグ-->
-   <button type="button" class="btn btn-light btn-sm">
+  <button type="button" class="btn btn-light btn-sm">
     <%= link_to image.idoltype, {controller: "images", action: "index", images_idoltype: image.idoltype}, class: "color_gray no-underline"%>
-   </button>
+  </button>
   <!--MV設定タグ-->
   <button type="button" class="btn btn-light btn-sm">
-  <%= link_to image.mv, {controller: "images", action: "index", images_mv: image.mv}, class: "color_gray no-underline"%>
+    <%= link_to image.mv, {controller: "images", action: "index", images_mv: image.mv}, class: "color_gray no-underline"%>
   </button>
   <!--アイドル名タグ-->
   <!--imagesのindexActionにパラメータを渡す 第二引数を明示的にハッシュでクラスと共存-->
   <button type="button" class="btn btn-light btn-sm">
-  <%= link_to image.idolname, {controller: "images", action: "index", images_idolname: image.idolname}, class: "color_gray no-underline"%>
+    <%= link_to image.idolname, {controller: "images", action: "index", images_idolname: image.idolname}, class: "color_gray no-underline"%>
   </button>
 
     <!--特定のユーザーの投稿累計-->
@@ -90,4 +85,4 @@
     <%end%><hr>
   <% end %>
 
-</div>
+</div><!--1postのまとまり-->

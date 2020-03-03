@@ -42,7 +42,7 @@ class ImagesController < ApplicationController
 
     #検索フォーム
     if params[:idolname].blank?
-    @search_count = Image.search(params[:idolname]).count
+      @search_count = Image.search(params[:idolname]).count
     #検索結果0件の場合、viewにて0件だった旨をメッセージで表示
     elsif @search_count == 0
 
@@ -54,50 +54,50 @@ class ImagesController < ApplicationController
     end
 
     @image = Image.new
-    Image.find_by(id: params[:id])
-  end
+      Image.find_by(id: params[:id])
+    end
 
-  def show
-    @image = Image.find(params[:id])
-    @images = @image.avatar
-    @comments = @image.comments
-    @comment = @image.comments.build
-  end
+    def show
+      @image = Image.find(params[:id])
+      @images = @image.avatar
+      @comments = @image.comments
+      @comment = @image.comments.build
+    end
 
-  #動くかテスト
-  def new
+    #動くかテスト
+    def new
       @idol = Idol.new
 
       idols = Idol.all
       idols = idols.map(&:idolname) #:idolnameを取り出し、戻り値として配列で作成
-  render json: idols.to_json
+      render json: idols.to_json
 
-   respond_to do |format| #respondo_to=指定した形式で返すようにするメソッド
-       format.html
-       format.json
-   end
-  end
+      respond_to do |format| #respondo_to=指定した形式で返すようにするメソッド
+        format.html
+        format.json
+      end
+    end
 
-  def auto_complete
-    @idols = Idol.select(:idolname).where("idolname like '%" + params[:term] + "%'").order(:idolname)
-    @idols = @idols.map(&:idolname)
-    render json: @idols.to_json
-  end
+    def auto_complete
+      @idols = Idol.select(:idolname).where("idolname like '%" + params[:term] + "%'").order(:idolname)
+      @idols = @idols.map(&:idolname)
+      render json: @idols.to_json
+    end
 
-  def auto_complete_search
-    @idols = Idol.select(:idolname).where("search like '%" + params[:term] + "%'").order(:idolname)
-    @idols = @idols.map(&:idolname)
-    render json: @idols.to_json
-  end
+    def auto_complete_search
+      @idols = Idol.select(:idolname).where("search like '%" + params[:term] + "%'").order(:idolname)
+      @idols = @idols.map(&:idolname)
+      render json: @idols.to_json
+    end
 
 
-  def create
-    #ログインしていない場合、ログイン画面へリダイレクトさせる
-    if user_signed_in?
-    @image = Image.new(image_params)
-    #入力フォームからストロングパラメータｄ取得
-    @image.idolname = params[:image][:idolname]
-    @image.user_id = current_user.id
+    def create
+      #ログインしていない場合、ログイン画面へリダイレクトさせる
+      if user_signed_in?
+        @image = Image.new(image_params)
+        #入力フォームからストロングパラメータｄ取得
+        @image.idolname = params[:image][:idolname]
+        @image.user_id = current_user.id
 
       if @image.save
         flash[:success] = "投稿に成功しました！"
@@ -113,11 +113,11 @@ class ImagesController < ApplicationController
         return
       end
 
-    else
-      flash[:danger] = "ログインしてください"
-      redirect_to user_session_url
+      else
+        flash[:danger] = "ログインしてください"
+        redirect_to user_session_url
+      end
     end
-  end
 
   def edit
     @image = Image.find_by(id: params[:id])
@@ -137,7 +137,7 @@ end
   def destroy
    #destroyメソッドを使用し対象のツイートを削除する。
    @image = Image.find(params[:id]).destroy
-    redirect_to root_url
+   redirect_to root_url
   end
 
   private

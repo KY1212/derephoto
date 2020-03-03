@@ -153,14 +153,16 @@ weekday[Date.parse(date).wday] %>)
         <%= link_to "コメントする (#{image.comments_count})", "images/#{image.id}",:style=>"color:grey;"%>
       <%end%>
     </div>
-
   </div>
 
   <div class="col-md-12 d-lg-none" >
     <div class="comment_link_mobile">
       <i class="fa fa-commenting-o"></i>&nbsp;
-      <%= link_to "コメントする (#{image.comments_count})", "images/#{image.id}",:style=>"color:grey;"%>
-
+      <%if image.comments_count == nil%>
+        <%= link_to "コメントする (0)", "images/#{image.id}",:style=>"color:grey;"%>
+      <%else%>
+      　<%= link_to "コメントする (#{image.comments_count})", "images/#{image.id}",:style=>"color:grey;"%>
+      <%end%>
     </div>
   </div>
 
